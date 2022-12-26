@@ -27,11 +27,19 @@ h1 {
     color: $color3;
 }
 
+html,
+body,
+#root,
+.App {
+    height: 100%;
+}
+
 #root {
     width: 100%;
     min-height: 100vh;
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-direction: column;
     position: relative;
     background-color: $color1;
