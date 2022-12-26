@@ -1,4 +1,7 @@
 import "./App.scss";
+import { useEffect, useState } from "react";
+import Loader from "./components/common/Loader";
+import { About } from "./containers";
 
 function App() {
     /**
@@ -15,10 +18,23 @@ function App() {
      *
      */
 
+    let [loading, setLoading] = useState(true);
+    useEffect(() => {
+        setTimeout(() => {
+            setLoading(false);
+        }, 3000);
+    }, []);
+
     return (
-        <section className="flex_c">
-            <h1>Hello World!</h1>
-        </section>
+        <>
+            <section className="flex_c">
+                {loading ? (
+                    <Loader loading={loading}></Loader>
+                ) : (
+                    <About></About>
+                )}
+            </section>
+        </>
     );
 }
 
