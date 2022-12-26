@@ -1,7 +1,6 @@
 import "./App.scss";
-import { useContext } from "react";
-import { About, Contact, Utilities, Portfolio } from "./containers";
-import { Navbar } from "./components";
+import { useContext, useState } from "react";
+import { About, Contact, Utilities, Portfolio, Navbar } from "./containers";
 import { Route, Routes } from "react-router-dom";
 import Context from "./context/Context";
 
@@ -20,29 +19,44 @@ function App() {
      *
      */
 
-    const loading = useContext(Context).loadingState[0];
+    const context = useContext(Context);
+    const loading = context.loadingState[0];
+    const { nav, setNav } = context.navState;
     console.log(loading);
+
+    const handleOnClick = (event) => {
+        event.preventDefault();
+        setNav((val) => !val);
+    };
+
     return (
         <>
-            {!loading && <Navbar></Navbar>}
-            <Routes>
-                <Route exact path="/" element={<About></About>}></Route>
-                <Route
-                    exact
-                    path="/contact"
-                    element={<Contact></Contact>}
-                ></Route>
-                <Route
-                    exact
-                    path="/portfolio"
-                    element={<Portfolio></Portfolio>}
-                ></Route>
-                <Route
-                    exact
-                    path="/utilities"
-                    element={<Utilities></Utilities>}
-                ></Route>
-            </Routes>
+            {!loading && (
+                <button onClick={handleOnClick}>
+                    {nav ? "hidenav" : "shownav"}
+                </button>
+            )}
+            {nav && <Navbar></Navbar>}
+            {!nav && (
+                <Routes>
+                    <Route exact path="/" element={<About></About>}></Route>
+                    <Route
+                        exact
+                        path="/contact"
+                        element={<Contact></Contact>}
+                    ></Route>
+                    <Route
+                        exact
+                        path="/portfolio"
+                        element={<Portfolio></Portfolio>}
+                    ></Route>
+                    <Route
+                        exact
+                        path="/utilities"
+                        element={<Utilities></Utilities>}
+                    ></Route>
+                </Routes>
+            )}
         </>
     );
 }

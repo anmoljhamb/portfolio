@@ -5,8 +5,10 @@ import "./Navbar.scss";
 
 const Navbar = () => {
     const setLoading = useContext(Context).loadingState[1];
+    const { setNav } = useContext(Context).navState;
     const handleOnClick = () => {
         setLoading(true);
+        setNav(false);
     };
 
     return (

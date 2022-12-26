@@ -4,6 +4,7 @@ $color1: #181818;
 $color2: #8758ff;
 $color3: #5cb8e4;
 $color4: #f2f2f2;
+$border_radius: 0.5rem;
 $default_font: 2.5rem;
 
 html {
@@ -64,4 +65,11 @@ section {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+button {
+    background-color: $color2;
+    padding: 1rem;
+    border-radius: $border_radius;
+    border: 3px solid $color3;
 }

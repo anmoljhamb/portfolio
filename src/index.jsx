@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./index.scss";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
-import LoadingState from "./context/LoadingState";
+import ContextHandler from "./context/ContextHandler";
 import { AppLoader } from "./components";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -30,11 +30,11 @@ const Loading = (props) => {
 const Root = () => {
     return (
         <Loading>
-            <LoadingState>
+            <ContextHandler>
                 <BrowserRouter>
                     <App />
                 </BrowserRouter>
-            </LoadingState>
+            </ContextHandler>
         </Loading>
     );
 };
