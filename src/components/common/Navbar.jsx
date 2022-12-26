@@ -4,7 +4,7 @@ import Context from "../../context/Context";
 import "./Navbar.scss";
 
 const Navbar = () => {
-    const [loading, setLoading] = useContext(Context).loadingState;
+    const setLoading = useContext(Context).loadingState;
     const handleOnClick = () => {
         setLoading(true);
     };
@@ -20,10 +20,10 @@ const Navbar = () => {
                     Contact
                 </NavLink>
                 <NavLink to="/portfolio" onClick={handleOnClick}>
-                    portfolio
+                    Portfolio
                 </NavLink>
                 <NavLink to="/utilities" onClick={handleOnClick}>
-                    utilities
+                    Utilities
                 </NavLink>
             </div>
         </section>

@@ -1,20 +1,24 @@
 import React, { useContext, useEffect } from "react";
+import { IfLoading } from "../../components";
 import Context from "../../context/Context";
 import "./Contact.scss";
 
 const Contact = () => {
-    const [loading, setLoading] = useContext(Context).loadingState;
+    const setLoading = useContext(Context).loadingState;
 
     useEffect(() => {
-        console.log("Setting loading to false");
-        setLoading(false);
-    }, []);
+        setTimeout(() => {
+            setLoading(false);
+        }, 1000);
+    });
 
     return (
-        <>
-            <h1>Contact Page</h1>
-            <p>hello how you doing sir??</p>
-        </>
+        <IfLoading>
+            <>
+                <h1>Contact Page</h1>
+                <p>hello how you doing sir??</p>
+            </>
+        </IfLoading>
     );
 };
 

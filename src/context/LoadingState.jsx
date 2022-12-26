@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Context from "./Context";
 
 const LoadingState = (props) => {
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
 
     return (
         <Context.Provider value={{ loadingState: [loading, setLoading] }}>
