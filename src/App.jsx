@@ -32,9 +32,15 @@ function App() {
     return (
         <>
             {!loading && (
-                <button className="navBtn" onClick={handleOnClick}>
-                    {nav ? "hidenav" : "shownav"}
-                </button>
+                <div
+                    className={nav && "open"}
+                    id="nav-icon"
+                    onClick={handleOnClick}
+                >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             )}
             {nav && <Navbar></Navbar>}
             {!nav && (
