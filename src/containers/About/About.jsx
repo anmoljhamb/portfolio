@@ -4,7 +4,7 @@ import { IfLoading } from "../../components";
 import "./About.scss";
 
 const About = () => {
-    const setLoading = useContext(Context).loadingState;
+    const setLoading = useContext(Context).loadingState[1];
 
     useEffect(() => {
         setTimeout(() => {

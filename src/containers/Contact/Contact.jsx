@@ -4,7 +4,7 @@ import Context from "../../context/Context";
 import "./Contact.scss";
 
 const Contact = () => {
-    const setLoading = useContext(Context).loadingState;
+    const setLoading = useContext(Context).loadingState[1];
 
     useEffect(() => {
         setTimeout(() => {

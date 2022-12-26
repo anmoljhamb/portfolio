@@ -4,7 +4,7 @@ import Context from "../../context/Context";
 import "./Navbar.scss";
 
 const Navbar = () => {
-    const setLoading = useContext(Context).loadingState;
+    const setLoading = useContext(Context).loadingState[1];
     const handleOnClick = () => {
         setLoading(true);
     };
