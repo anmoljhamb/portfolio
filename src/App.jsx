@@ -1,5 +1,5 @@
 import "./App.scss";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { About, Contact, Utilities, Portfolio, Navbar } from "./containers";
 import { Route, Routes } from "react-router-dom";
 import Context from "./context/Context";
