@@ -1,11 +1,14 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import Context from "../../context/Context";
 import "./About.scss";
 
-const AboutPage = () => {
-    const context = useContext(Context);
+const About = () => {
+    const [loading, setLoading] = useContext(Context).loadingState;
 
-    console.log(context);
+    useEffect(() => {
+        // console.log("Setting loading to false");
+        setLoading(false);
+    });
 
     return (
         <>
@@ -15,4 +18,4 @@ const AboutPage = () => {
     );
 };
 
-export default AboutPage;
+export default About;

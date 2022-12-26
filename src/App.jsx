@@ -1,10 +1,8 @@
 import "./App.scss";
-import { useContext, useEffect, useState } from "react";
-import Loader from "./components/common/Loader";
-import { About } from "./containers";
-import { Navbar } from "./components";
+import { useContext, useEffect } from "react";
+import { About, Contact, Utilities, Portfolio } from "./containers";
+import { Navbar, AppLoader } from "./components";
 import { Route, Routes } from "react-router-dom";
-import LoadingState from "./context/LoadingState";
 import Context from "./context/Context";
 
 function App() {
@@ -22,14 +20,35 @@ function App() {
      *
      */
 
-    const context = useContext(Context);
-    console.log(context);
+    const [loading, setLoading] = useContext(Context).loadingState;
+    console.log(loading);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setLoading(false);
+        }, 1200);
+    }, []);
 
     return (
         <>
             <Navbar></Navbar>
             <Routes>
                 <Route exact path="/" element={<About></About>}></Route>
+                <Route
+                    exact
+                    path="/contact"
+                    element={<Contact></Contact>}
+                ></Route>
+                <Route
+                    exact
+                    path="/portfolio"
+                    element={<Portfolio></Portfolio>}
+                ></Route>
+                <Route
+                    exact
+                    path="/utilities"
+                    element={<Utilities></Utilities>}
+                ></Route>
             </Routes>
         </>
     );

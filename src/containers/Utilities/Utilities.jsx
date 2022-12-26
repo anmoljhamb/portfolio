@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import Context from "../../context/Context";
 import "./Utilities.scss";
 
 const Utilities = () => {
+    const [loading, setLoading] = useContext(Context).loadingState;
+
+    useEffect(() => {
+        console.log("Setting loading to false");
+        setLoading(false);
+    }, []);
+
     return (
         <>
             <h1>Utilities Page</h1>
