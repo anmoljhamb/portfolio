@@ -32,7 +32,7 @@ function App() {
     return (
         <>
             {!loading && (
-                <button onClick={handleOnClick}>
+                <button className="navBtn" onClick={handleOnClick}>
                     {nav ? "hidenav" : "shownav"}
                 </button>
             )}
