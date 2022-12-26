@@ -1,7 +1,11 @@
 import "./App.scss";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Loader from "./components/common/Loader";
 import { About } from "./containers";
+import { Navbar } from "./components";
+import { Route, Routes } from "react-router-dom";
+import LoadingState from "./context/LoadingState";
+import Context from "./context/Context";
 
 function App() {
     /**
@@ -18,22 +22,15 @@ function App() {
      *
      */
 
-    let [loading, setLoading] = useState(true);
-    useEffect(() => {
-        setTimeout(() => {
-            setLoading(false);
-        }, 3000);
-    }, []);
+    const context = useContext(Context);
+    console.log(context);
 
     return (
         <>
-            <section className="flex_c">
-                {loading ? (
-                    <Loader loading={loading}></Loader>
-                ) : (
-                    <About></About>
-                )}
-            </section>
+            <Navbar></Navbar>
+            <Routes>
+                <Route exact path="/" element={<About></About>}></Route>
+            </Routes>
         </>
     );
 }
