@@ -1,0 +1,23 @@
+@import "../../index.scss";
+
+.sideBar {
+    position: absolute;
+    top: auto;
+    list-style: none;
+    i {
+        transition: all 0.3s ease-in-out;
+        width: 9rem;
+        height: 6rem;
+        margin-right: 2rem;
+        padding: 1rem 1rem;
+        text-align: right;
+        background-color: $color2;
+        font-size: 4rem;
+        color: $color4;
+        transform: translateX(-3rem);
+        cursor: pointer;
+        &:hover {
+            transform: translateX(0rem);
+        }
+    }
+}
