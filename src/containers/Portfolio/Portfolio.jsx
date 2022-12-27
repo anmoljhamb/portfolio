@@ -14,6 +14,9 @@ const Portfolio = () => {
 
     return (
         <IfLoading>
+            <div className="reverse">
+                <NextArrow next="/"></NextArrow>
+            </div>
             <>
                 <h1>Portfolio Page</h1>
                 <p>hello how you doing sir??</p>

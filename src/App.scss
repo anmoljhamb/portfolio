@@ -67,6 +67,18 @@
 }
 
 $transition-time: 0.15s;
+
+.reverse {
+    .arrow {
+        transform: scaleX(-1);
+        right: auto;
+        left: 1rem;
+        &:active {
+            transform: scaleX(-1) scale(0.9);
+        }
+    }
+}
+
 .arrow {
     transform: translateX(-50%) translateY(-50%);
     transition: transform 0.1s;

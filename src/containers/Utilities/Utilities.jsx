@@ -14,6 +14,9 @@ const Utilities = () => {
 
     return (
         <IfLoading>
+            <div className="reverse">
+                <NextArrow next="/portfolio"></NextArrow>
+            </div>
             <>
                 <h1>Utilities Page</h1>
                 <p>hello how you doing sir??</p>
