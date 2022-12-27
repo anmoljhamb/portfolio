@@ -15,10 +15,15 @@ const About = () => {
     return (
         <IfLoading>
             <SideBar></SideBar>
-            <>
-                <h1>Hello World!</h1>
-                <p>hello how you doing sir??</p>
-            </>
+            <section>
+                <div className="content">
+                    <h1>Hello, I am Anmol Jhamb</h1>
+                    <p>
+                        hello how you <span className="highlight">doing</span>{" "}
+                        sir??
+                    </p>
+                </div>
+            </section>
         </IfLoading>
     );
 };

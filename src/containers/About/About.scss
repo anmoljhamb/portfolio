@@ -21,3 +21,30 @@
         }
     }
 }
+
+.highlight {
+    color: $color3;
+}
+
+@media only screen and (max-width: 500px) {
+    .sideBar {
+        bottom: 0;
+        display: flex;
+        padding: 0rem;
+        i {
+            margin-right: 0;
+            width: 7rem;
+            text-align: center;
+            padding: 1rem 2rem;
+            transform: translateX(0rem);
+        }
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .sideBar {
+        i:hover {
+            transform: translateX(-3rem);
+        }
+    }
+}

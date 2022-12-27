@@ -1,4 +1,4 @@
-export const loadingColor = "#8758ff";
+export const loadingColor = "#5cb8e4";
 export const pageloadingSize = 150;
 export const appLoadingSize = 80;
 export const twitterLink = "https://twitter.com/heyitsanmolj";
