@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { IfLoading, NextArrow } from "../../components";
+import { IfLoading, NextArrow, SideBar } from "../../components";
 import Context from "../../context/Context";
 import "./Contact.scss";
 
@@ -17,11 +17,22 @@ const Contact = () => {
             <div className="reverse">
                 <NextArrow next="/utilities"></NextArrow>
             </div>
-
-            <>
-                <h1>Contact Page</h1>
-                <p>hello how you doing sir??</p>
-            </>
+            <section>
+                <div className="contact">
+                    <h1>Get in Touch</h1>
+                    <p>
+                        If you wanna get in touch, talk to me about a project
+                        collaboration or just say hi, you can reach out to me on
+                        my socials or mail me at{" "}
+                        <a href="mailto:talktoanmol@outlook.com">
+                            <span className="highlight">
+                                talktoanmol@outlook.com
+                            </span>
+                        </a>
+                    </p>
+                    <SideBar></SideBar>
+                </div>
+            </section>
         </IfLoading>
     );
 };
