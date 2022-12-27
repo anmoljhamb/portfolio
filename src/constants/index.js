@@ -1,4 +1,6 @@
-export const loadingColor = "#3fc1c9";
+import variables from "../index.scss";
+
+export const loadingColor = variables.color;
 export const pageloadingSize = 150;
 export const appLoadingSize = 80;
 export const twitterLink = "https://twitter.com/heyitsanmolj";
