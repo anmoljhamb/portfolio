@@ -22,8 +22,28 @@
     }
 }
 
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    vertical-align: center;
+    font-family: "Roboto", sans-serif;
+    h1 {
+        font-size: 5rem;
+    }
+    * {
+        font-size: 3rem;
+    }
+}
+
 .highlight {
     color: $color3;
+    font-weight: bold;
+    display: inline-flex;
+    text-transform: capitalize;
+    @include bgEffect;
 }
 
 @media only screen and (max-width: 500px) {
