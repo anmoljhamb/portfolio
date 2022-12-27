@@ -70,11 +70,11 @@ $transition-time: 0.15s;
 
 .reverse {
     .arrow {
-        transform: scaleX(-1);
+        transform: scaleX(-1) translateX(-50%) translateY(-50%);
         right: auto;
         left: 1rem;
         &:active {
-            transform: scaleX(-1) scale(0.9);
+            transform: scaleX(-1) scale(0.9) translateX(-50%) translateY(-50%);
         }
     }
 }

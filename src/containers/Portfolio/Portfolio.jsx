@@ -8,6 +8,12 @@ const Portfolio = () => {
 
     useEffect(() => {
         setTimeout(() => {
+            fetch("https://api.github.com/users/anmoljhamb/repos").then(
+                (resp) =>
+                    resp.json().then((data) => {
+                        console.log(data);
+                    })
+            );
             setLoading(false);
         }, 1000);
     });
@@ -18,8 +24,7 @@ const Portfolio = () => {
                 <NextArrow next="/"></NextArrow>
             </div>
             <>
-                <h1>Portfolio Page</h1>
-                <p>hello how you doing sir??</p>
+                <h1>Portfolio</h1>
             </>
             <NextArrow next="/utilities"></NextArrow>
         </IfLoading>
