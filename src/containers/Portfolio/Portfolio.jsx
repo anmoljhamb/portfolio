@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { IfLoading } from "../../components";
+import { IfLoading, NextArrow } from "../../components";
 import Context from "../../context/Context";
 import "./Portfolio.scss";
 
@@ -18,6 +18,7 @@ const Portfolio = () => {
                 <h1>Portfolio Page</h1>
                 <p>hello how you doing sir??</p>
             </>
+            <NextArrow next="/utilities"></NextArrow>
         </IfLoading>
     );
 };
