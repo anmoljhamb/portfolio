@@ -17,7 +17,10 @@ const About = () => {
             <SideBar></SideBar>
             <section style={{ border: "0rem" }}>
                 <div className="content">
-                    <h1>Hello, I am Anmol Jhamb</h1>
+                    <div className="heading">
+                        <h1>Hello, I am</h1>
+                        <h1 className="typewriter">Anmol Jhamb</h1>
+                    </div>
                     <p>
                         I am a 20-year-old tech enthusiast. I had been coding
                         for a while before I got to pursue it as a career. I am
@@ -37,12 +40,9 @@ const About = () => {
                         , and <span className="highlight">IoT</span>. I am
                         currently looking to find a good remote internship that
                         would allow me the chance to work with a team and get
-                        real-world experience.
-                        <br />
-                        Checkout the <span className="highlight">
-                            projects
-                        </span>{" "}
-                        that I've workd on. Or the{" "}
+                        real-world experience. Checkout the{" "}
+                        <span className="highlight">projects</span> that I've
+                        workd on. Or the{" "}
                         <div className="highlight">Utilities</div> I made to
                         make my life easier.
                     </p>

@@ -123,11 +123,35 @@ button {
     border: 3px solid $color3;
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 1000px) {
     html {
-        font-size: 50%;
+        font-size: 57%;
+    }
+}
+
+@media only screen and (max-width: 850px) {
+    html {
+        font-size: 51%;
     }
     section {
         width: 90%;
     }
 }
+
+// @media only screen and (max-width: 750px) {
+//     html {
+//         font-size: 42%;
+//     }
+// }
+
+@media only screen and (max-width: 620px) {
+    html {
+        font-size: 40%;
+    }
+}
+
+// @media only screen and (max-width: 500px) {
+//     html {
+//         font-size: 39%;
+//     }
+// }

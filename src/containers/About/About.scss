@@ -31,7 +31,10 @@
     vertical-align: center;
     font-family: "Roboto", sans-serif;
     h1 {
-        font-size: 5rem;
+        font-size: 4rem;
+    }
+    .heading {
+        display: flex;
     }
     * {
         font-size: 3rem;
@@ -42,11 +45,40 @@
     color: $color3;
     font-weight: bold;
     display: inline-flex;
+    padding: 0.3rem;
     text-transform: capitalize;
     @include bgEffect;
 }
 
-@media only screen and (max-width: 500px) {
+.typewriter {
+    margin-left: 1rem;
+    width: 27rem;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 4px solid $color4;
+    animation: cursor 1s step-start infinite,
+        text 5s steps(18) alternate infinite;
+}
+
+@keyframes cursor {
+    0% {
+        border-color: $color4;
+    }
+    50% {
+        border-color: $color1;
+    }
+}
+
+@keyframes text {
+    0% {
+        width: 0;
+    }
+    50% {
+        width: 27rem;
+    }
+}
+
+@media only screen and (max-width: 850px) {
     .sideBar {
         bottom: 0;
         display: flex;
@@ -61,10 +93,7 @@
     }
 }
 
-@media only screen and (max-width: 768px) {
-    .sideBar {
-        i:hover {
-            transform: translateX(-3rem);
-        }
-    }
-}
+// @media only screen and (max-width: 768px) {
+//     .sideBar {
+//     }
+// }
