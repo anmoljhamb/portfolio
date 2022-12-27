@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import Context from "../../context/Context";
-import { IfLoading, SideBar } from "../../components";
+import { IfLoading, NextArrow, SideBar } from "../../components";
 import "./About.scss";
 
 const About = () => {
@@ -43,11 +43,12 @@ const About = () => {
                         real-world experience. Checkout the{" "}
                         <span className="highlight">projects</span> that I've
                         workd on. Or the{" "}
-                        <div className="highlight">Utilities</div> I made to
+                        <span className="highlight">Utilities</span> I made to
                         make my life easier.
                     </p>
                 </div>
             </section>
+            <NextArrow next="/portfolio"></NextArrow>
         </IfLoading>
     );
 };

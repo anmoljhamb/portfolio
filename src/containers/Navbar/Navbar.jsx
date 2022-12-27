@@ -17,14 +17,14 @@ const Navbar = () => {
             <NavLink to="/" onClick={handleOnClick}>
                 About
             </NavLink>
-            <NavLink to="/contact" onClick={handleOnClick}>
-                Contact
-            </NavLink>
             <NavLink to="/portfolio" onClick={handleOnClick}>
                 Portfolio
             </NavLink>
             <NavLink to="/utilities" onClick={handleOnClick}>
                 Utilities
+            </NavLink>
+            <NavLink to="/contact" onClick={handleOnClick}>
+                Contact
             </NavLink>
         </div>
     );

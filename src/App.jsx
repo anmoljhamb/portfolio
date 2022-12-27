@@ -33,7 +33,7 @@ function App() {
         <>
             {!loading && (
                 <div
-                    className={nav && "open"}
+                    className={nav ? "open" : ""}
                     id="nav-icon"
                     onClick={handleOnClick}
                 >
