@@ -13,9 +13,9 @@ const NextArrow = (props) => {
 
     return (
         <Link to={props.next} onClick={handleOnClick}>
-            <div class="arrow">
-                <div class="arrow-top"></div>
-                <div class="arrow-bottom"></div>
+            <div className="arrow">
+                <div className="arrow-top"></div>
+                <div className="arrow-bottom"></div>
             </div>
         </Link>
     );
