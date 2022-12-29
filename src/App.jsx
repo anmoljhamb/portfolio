@@ -42,24 +42,20 @@ function App() {
                     <span></span>
                 </div>
             )}
-            {nav && <Navbar></Navbar>}
+            {nav && <Navbar />}
             {!nav && (
                 <Routes>
-                    <Route exact path="/" element={<About></About>}></Route>
-                    <Route
-                        exact
-                        path="/contact"
-                        element={<Contact></Contact>}
-                    ></Route>
+                    <Route exact path="/" element={<About />}></Route>
+                    <Route exact path="/contact" element={<Contact />}></Route>
                     <Route
                         exact
                         path="/portfolio"
-                        element={<Portfolio></Portfolio>}
+                        element={<Portfolio />}
                     ></Route>
                     <Route
                         exact
                         path="/utilities"
-                        element={<Utilities></Utilities>}
+                        element={<Utilities />}
                     ></Route>
                 </Routes>
             )}
