@@ -1,6 +1,8 @@
 import variables from "../index.scss";
 
-export const loadingColor = variables.color;
+export { default as colorVariables } from "../index.scss";
+
+export const loadingColor = variables.color2;
 export const pageloadingSize = 150;
 export const appLoadingSize = 80;
 export const twitterLink = "https://twitter.com/heyitsanmolj";
