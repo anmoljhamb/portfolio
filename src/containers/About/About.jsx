@@ -3,8 +3,9 @@ import { IfLoading, NextArrow, SideBar } from "../../components";
 import Context from "../../context/Context";
 import { codingGif } from "../../assets";
 import { Cursor, useTypewriter } from "react-simple-typewriter";
-import "./About.scss";
 import { colorVariables } from "../../constants";
+import { motion } from "framer-motion";
+import "./About.scss";
 
 const About = () => {
     const setLoading = useContext(Context).loadingState[1];
@@ -31,22 +32,51 @@ const About = () => {
             <SideBar></SideBar>
             <section>
                 <header className="header">
-                    <div className="heading">
-                        <h1>
-                            Hi there! <span className="wave">👋🏻</span>
-                        </h1>
-                        <h1>
-                            I'm <span className="name">Anmol Jhamb</span>
-                        </h1>
-                        <h1>
-                            {text}
-                            <span>
-                                <Cursor cursorColor={colorVariables.color4} />
-                            </span>
-                        </h1>
+                    <div className="main_header">
+                        <motion.div
+                            initial={{
+                                opacity: 0,
+                            }}
+                            animate={{
+                                opacity: 1,
+                            }}
+                            transition={{
+                                duration: 0.5,
+                            }}
+                            className="heading"
+                        >
+                            <h1>
+                                Hi there! <span className="wave">👋🏻</span>
+                            </h1>
+                            <h1>
+                                I'm <span className="name">Anmol Jhamb</span>
+                            </h1>
+                            <h1>
+                                {text}
+                                <span>
+                                    <Cursor
+                                        cursorColor={colorVariables.color4}
+                                    />
+                                </span>
+                            </h1>
+                        </motion.div>
+                        <motion.div
+                            initial={{
+                                opacity: 0,
+                            }}
+                            animate={{
+                                opacity: 1,
+                            }}
+                            transition={{
+                                duration: 0.5,
+                            }}
+                            className="codingGif"
+                        >
+                            <img src={codingGif} alt="Coding GIF" />
+                        </motion.div>
                     </div>
-                    <div className="codingGif">
-                        <img src={codingGif} alt="Coding GIF" />
+                    <div className="sub_header">
+                        <p>this is my sub header</p>
                     </div>
                     {/* <p>
                         I am a 20-year-old tech enthusiast. I had been coding

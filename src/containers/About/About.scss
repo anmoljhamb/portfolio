@@ -24,50 +24,69 @@
 
 .header {
     width: 100%;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-direction: row;
-    text-align: left;
-    & > div {
-        flex-basis: 100%;
-    }
-    .codingGif {
+    height: 55rem;
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    .main_header {
+        scroll-snap-align: start;
         width: 100%;
         height: 100%;
-        img {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-direction: row;
+        text-align: left;
+        & > div {
+            flex-basis: 100%;
+        }
+        .codingGif {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+            @media only screen and (max-width: 620px) {
+                display: none;
+            }
         }
-        @media only screen and (max-width: 620px) {
-            display: none;
-        }
-    }
-    .heading {
-        display: flex;
-        justify-content: center;
-        // align-items: center;
-        flex-direction: column;
-        text-align: right;
-        padding-right: 1rem;
-        h1 {
-            font-size: 4rem;
-            span {
+        .heading {
+            display: flex;
+            justify-content: center;
+            // align-items: center;
+            flex-direction: column;
+            text-align: right;
+            padding-right: 1rem;
+            h1 {
+                font-size: 4rem;
+                span {
+                    font-size: 4rem;
+                }
+            }
+            .wave {
+                animation-name: wave-animation;
+                animation-duration: 2.1s;
+                animation-iteration-count: infinite;
+                transform-origin: 70% 70%;
+                display: inline-block;
                 font-size: 4rem;
             }
         }
-        .wave {
-            animation-name: wave-animation;
-            animation-duration: 2.1s;
-            animation-iteration-count: infinite;
-            transform-origin: 70% 70%;
-            display: inline-block;
-            font-size: 4rem;
+        * {
+            font-size: 3rem;
         }
     }
-    * {
+    .sub_header {
+        color: $color4;
         font-size: 3rem;
+        scroll-snap-align: start;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
     }
 }
 
@@ -78,34 +97,6 @@
     padding: 0.3rem;
     text-transform: capitalize;
     @include bgEffect;
-}
-
-.typewriter {
-    margin-left: 1rem;
-    width: 27rem;
-    white-space: nowrap;
-    overflow: hidden;
-    border-right: 4px solid $color4;
-    animation: cursor 1s step-start infinite,
-        text 5s steps(18) alternate infinite;
-}
-
-@keyframes cursor {
-    0% {
-        border-color: $color4;
-    }
-    50% {
-        border-color: $color1;
-    }
-}
-
-@keyframes text {
-    0% {
-        width: 0;
-    }
-    50% {
-        width: 27rem;
-    }
 }
 
 @keyframes wave-animation {
@@ -148,4 +139,23 @@
             transform: translateX(0rem);
         }
     }
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: $color2;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
