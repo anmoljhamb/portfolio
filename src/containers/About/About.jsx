@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { IfLoading, NextArrow, SideBar } from "../../components";
+import { IfLoading, NextArrow, Particle, SideBar } from "../../components";
 import Context from "../../context/Context";
 import { codingGif } from "../../assets";
 import { Cursor, useTypewriter } from "react-simple-typewriter";

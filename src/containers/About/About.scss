@@ -4,6 +4,7 @@
     position: absolute;
     top: auto;
     list-style: none;
+    z-index: 10;
     i {
         transition: all 0.3s ease-in-out;
         width: 9rem;
@@ -27,6 +28,8 @@
     height: 55rem;
     scroll-snap-type: y mandatory;
     overflow-y: scroll;
+    transition: $transition;
+    z-index: 10;
     .main_header {
         scroll-snap-align: start;
         width: 100%;
