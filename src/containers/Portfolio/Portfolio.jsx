@@ -4,22 +4,19 @@ import Context from "../../context/Context";
 import "./Portfolio.scss";
 import GitHubCalendar from "react-github-calendar";
 import { colorVariables } from "../../constants";
-import { python } from "../../utils/TechStacks";
+import projectsData, { getTechStacks } from "../../constants/ProjectsData";
 
 const Portfolio = () => {
     const setLoading = useContext(Context).loadingState[1];
 
     useEffect(() => {
         setTimeout(() => {
-            fetch("https://api.github.com/users/anmoljhamb/repos").then(
-                (resp) =>
-                    resp.json().then((data) => {
-                        console.log(data);
-                    })
-            );
             setLoading(false);
         }, 1000);
     });
+
+    console.log(projectsData);
+    console.log(getTechStacks());
 
     return (
         <IfLoading>
@@ -31,36 +28,19 @@ const Portfolio = () => {
                 <div className="techStacks">
                     <div className="techStack">all</div>
                     {/* Sorted by most used in my projects. */}
-                    {python.image}
-                    {python.image}
-                    {python.image}
-                    {python.image}
-                    {python.image}
-                    {python.image}
-                    {python.image}
-                    {python.image}
-                    {python.image}
-                    {python.image}
-                    {python.image}
-                    {python.image}
-                    {python.image}
-                    {python.image}
-                    {python.image}
-                    {python.image}
+                    {getTechStacks().map((stack) => stack.image)}
                 </div>
                 <div className="container">
-                    <div className="projectRow">
-                        <Project />
-                    </div>
-                    <div className="projectRow">
-                        <Project />
-                    </div>
-                    <div className="projectRow">
-                        <Project />
-                    </div>
-                    <div className="projectRow">
-                        <Project />
-                    </div>
+                    {projectsData.map((projectData) => {
+                        return (
+                            <div className="projectRow">
+                                <Project
+                                    key={projectData.projectName}
+                                    project={projectData}
+                                ></Project>
+                            </div>
+                        );
+                    })}
                 </div>
             </section>
             <section className="githubCalendar">

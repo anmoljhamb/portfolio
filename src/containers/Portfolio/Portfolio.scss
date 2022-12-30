@@ -71,6 +71,11 @@
                     font-size: 2rem;
                     .projectName {
                         font-size: 4rem;
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        flex-direction: column;
                         color: $color3;
                         font-weight: bold;
                     }
