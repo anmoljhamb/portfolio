@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { IfLoading, NextArrow } from "../../components";
+import { IfLoading, NextArrow, Project } from "../../components";
 import Context from "../../context/Context";
 import "./Portfolio.scss";
 import GitHubCalendar from "react-github-calendar";
@@ -29,7 +29,7 @@ const Portfolio = () => {
             <section className="portfolio">
                 <h1>Portfolio</h1>
                 <div className="techStacks">
-                    <div className="techStack">All</div>
+                    <div className="techStack">all</div>
                     {/* Sorted by most used in my projects. */}
                     <DiPython className="techStack"></DiPython>
                     <DiPython className="techStack"></DiPython>
@@ -54,20 +54,16 @@ const Portfolio = () => {
                 </div>
                 <div className="container">
                     <div className="projectRow">
-                        <div className="project">Project 1</div>
-                        <div className="project">Project 2</div>
+                        <Project />
                     </div>
                     <div className="projectRow">
-                        <div className="project">Project 3</div>
-                        <div className="project">Project 4</div>
+                        <Project />
                     </div>
                     <div className="projectRow">
-                        <div className="project">Project 5</div>
-                        <div className="project">Project 6</div>
+                        <Project />
                     </div>
                     <div className="projectRow">
-                        <div className="project">Project 7</div>
-                        <div className="project">Project 8</div>
+                        <Project />
                     </div>
                 </div>
             </section>
