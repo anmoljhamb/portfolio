@@ -6,6 +6,7 @@ $color1: #222831;
 $color2: #30475e;
 $color3: #f05454;
 $color4: #dddddd;
+$border: 0.2rem solid $color2;
 $border_radius: 0.5rem;
 $default_font: 2.5rem;
 $transition: all 0.3s ease-in-out;
@@ -106,7 +107,7 @@ section {
     flex-direction: column;
     padding: 1rem;
     width: 70%;
-    border: 0.2rem solid $color2;
+    border: $border;
 }
 
 .full_fit {
