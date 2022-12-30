@@ -1,7 +1,7 @@
 import React from "react";
 import { python } from "../../utils/TechStacks";
 
-const Project = ({ project }) => {
+const Project = ({ project, activeStack }) => {
     return (
         <div className="project">
             <div className="projectImage">
@@ -14,7 +14,15 @@ const Project = ({ project }) => {
                         {project.techStacks.map((stack) => {
                             return (
                                 <React.Fragment key={stack.name}>
-                                    {stack.image}
+                                    <span
+                                        className={
+                                            activeStack == stack.name
+                                                ? "active"
+                                                : ""
+                                        }
+                                    >
+                                        {stack.image}
+                                    </span>
                                 </React.Fragment>
                             );
                         })}

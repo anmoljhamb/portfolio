@@ -76,6 +76,7 @@ const Portfolio = () => {
                                 key={projectData.projectName}
                             >
                                 <Project
+                                    activeStack={active}
                                     key={projectData.projectName}
                                     project={projectData}
                                 ></Project>
