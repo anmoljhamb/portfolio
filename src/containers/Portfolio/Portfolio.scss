@@ -8,6 +8,15 @@
         margin: 0rem 1rem;
         justify-content: center;
         align-items: center;
+        span.active {
+            * {
+                border-radius: 1rem;
+                // background-color: $color4;
+                fill: $color4;
+                color: $color4;
+                border-color: $color4;
+            }
+        }
         .techStack {
             margin: 1rem;
             width: 5rem;

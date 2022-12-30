@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { IfLoading, NextArrow, Project } from "../../components";
 import Context from "../../context/Context";
 import "./Portfolio.scss";
@@ -8,6 +8,8 @@ import projectsData, { getTechStacks } from "../../constants/ProjectsData";
 
 const Portfolio = () => {
     const setLoading = useContext(Context).loadingState[1];
+    const [projects, setProjects] = useState(projectsData);
+    const [active, setActive] = useState("all");
 
     useEffect(() => {
         setTimeout(() => {
@@ -15,8 +17,21 @@ const Portfolio = () => {
         }, 1000);
     });
 
-    console.log(projectsData);
-    console.log(getTechStacks());
+    const handleOnClick = (stack) => {
+        const _util = (event) => {
+            setActive(stack.name);
+            const current_projects = [];
+
+            projectsData.forEach((project) => {
+                if (project.techStacks.includes(stack)) {
+                    current_projects.push(project);
+                }
+            });
+
+            setProjects(current_projects);
+        };
+        return _util;
+    };
 
     return (
         <IfLoading>
@@ -26,14 +41,40 @@ const Portfolio = () => {
             <section className="portfolio">
                 <h1>Portfolio</h1>
                 <div className="techStacks">
-                    <div className="techStack">all</div>
+                    <div
+                        className={
+                            active == "all" ? "techStack active" : "techStack"
+                        }
+                        onClick={() => {
+                            setProjects(projectsData);
+                            setActive("all");
+                        }}
+                    >
+                        all
+                    </div>
                     {/* Sorted by most used in my projects. */}
-                    {getTechStacks().map((stack) => stack.image)}
+                    {getTechStacks().map((stack) => {
+                        return (
+                            <React.Fragment key={stack.name}>
+                                <span
+                                    className={
+                                        active == stack.name ? "active" : ""
+                                    }
+                                    onClick={handleOnClick(stack)}
+                                >
+                                    {stack.image}
+                                </span>
+                            </React.Fragment>
+                        );
+                    })}
                 </div>
                 <div className="container">
-                    {projectsData.map((projectData) => {
+                    {projects.map((projectData) => {
                         return (
-                            <div className="projectRow">
+                            <div
+                                className="projectRow"
+                                key={projectData.projectName}
+                            >
                                 <Project
                                     key={projectData.projectName}
                                     project={projectData}

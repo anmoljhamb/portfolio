@@ -11,7 +11,13 @@ const Project = ({ project }) => {
                 <div className="projectName">
                     {project.projectName}
                     <div className="techStacks">
-                        {project.techStacks.map((stack) => stack.image)}
+                        {project.techStacks.map((stack) => {
+                            return (
+                                <React.Fragment key={stack.name}>
+                                    {stack.image}
+                                </React.Fragment>
+                            );
+                        })}
                     </div>
                 </div>
                 <div className="projectInfo">{project.projectInfo}</div>
