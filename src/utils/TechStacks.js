@@ -1,4 +1,12 @@
-import { DiPython, DiNodejsSmall, DiCss3, DiJavascript } from "react-icons/di";
+import {
+    DiPython,
+    DiNodejsSmall,
+    DiCss3,
+    DiJavascript,
+    DiReact,
+    DiMongodb,
+    DiSass,
+} from "react-icons/di";
 import ExpressLogo from "../assets/expressLogo";
 
 class TechStack {
@@ -10,16 +18,28 @@ class TechStack {
 
 const python = new TechStack(
     "python",
-    <DiPython key="python" className="techStack" />
+    <DiPython key="python" className="techStack" title="Python" />
 );
 const nodejs = new TechStack(
     "nodejs",
-    <DiNodejsSmall key="nodejs" className="techStack" />
+    <DiNodejsSmall key="nodejs" className="techStack" title="NodeJS" />
 );
 const css = new TechStack("css", <DiCss3 key="css" className="techStack" />);
 const javascript = new TechStack(
     "javascript",
-    <DiJavascript key="javascript" className="techStack" />
+    <DiJavascript key="javascript" className="techStack" title="JavaScript" />
+);
+const react = new TechStack(
+    "react",
+    <DiReact key="react" className="techStack" title="React" />
+);
+const mongodb = new TechStack(
+    "mongodb",
+    <DiMongodb key="mongodb" className="techStack" title="MongoDB" />
+);
+const sass = new TechStack(
+    "sass",
+    <DiSass key="sass" className="techStack" title="sass" />
 );
 const express = new TechStack(
     "express",
@@ -27,4 +47,13 @@ const express = new TechStack(
 );
 
 // export default TechStack;
-export default { python, nodejs, css, express, javascript };
+export default {
+    python,
+    nodejs,
+    css,
+    express,
+    javascript,
+    react,
+    mongodb,
+    sass,
+};
