@@ -13,10 +13,9 @@ $transition: all 0.3s ease-in-out;
 @mixin bgEffect {
     position: relative;
     cursor: pointer;
-    color: $color4;
+    color: $color3;
     z-index: 1;
     overflow: hidden;
-
     &:hover {
         color: $color4;
     }

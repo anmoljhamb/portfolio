@@ -25,7 +25,7 @@
 
 .header {
     width: 100%;
-    height: 55rem;
+    height: 60rem;
     scroll-snap-type: y mandatory;
     overflow-y: scroll;
     transition: $transition;
@@ -87,19 +87,62 @@
         width: 100%;
         height: 100%;
         display: flex;
-        justify-content: center;
+        // justify-content: center;
         align-items: center;
         flex-direction: column;
+        h1 {
+            font-size: 4rem;
+            text-transform: capitalize;
+            .colored {
+                font-size: 4rem;
+                color: $color4;
+            }
+        }
+        .container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            @media only screen and (max-width: 620px) {
+            }
+            & > div {
+                padding: 1rem;
+                margin: 1rem;
+            }
+            .avatar {
+                width: 20rem;
+                height: 20rem;
+                object-fit: cover;
+                overflow: hidden;
+                background-color: $color2;
+                border-radius: 50%;
+                img {
+                    transform: scale(1.1);
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+                @media only screen and (max-width: 440px) {
+                    display: none;
+                }
+            }
+            .content {
+                flex-basis: 100%;
+                .highlight {
+                    font-weight: bold;
+                    color: $color3;
+                    text-decoration: none;
+                    overflow: hidden;
+                    transition: $transition;
+                    &:hover {
+                        color: $color4;
+                        background-color: $color3;
+                    }
+                }
+            }
+        }
     }
-}
-
-.highlight {
-    color: $color3;
-    font-weight: bold;
-    display: inline-flex;
-    padding: 0.3rem;
-    text-transform: capitalize;
-    @include bgEffect;
 }
 
 @keyframes wave-animation {
