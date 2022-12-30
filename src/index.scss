@@ -154,3 +154,22 @@ button {
     color3: $color3;
     color4: $color4;
 }
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: $color2;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: $color3;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
