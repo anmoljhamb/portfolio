@@ -1,11 +1,10 @@
 import React from "react";
-import { python } from "../../utils/TechStacks";
 
 const Project = ({ project, activeStack }) => {
     return (
         <div className="project">
             <div className="projectImage">
-                <img src={project.projectImage} alt="Project Image" />
+                <img src={project.projectImage} alt="Project" />
             </div>
             <div className="projectInfo">
                 <div className="projectName">
@@ -16,7 +15,7 @@ const Project = ({ project, activeStack }) => {
                                 <React.Fragment key={stack.name}>
                                     <span
                                         className={
-                                            activeStack == stack.name
+                                            activeStack === stack.name
                                                 ? "active"
                                                 : ""
                                         }
@@ -30,12 +29,16 @@ const Project = ({ project, activeStack }) => {
                 </div>
                 <div className="projectInfo">{project.projectInfo}</div>
                 <div className="projectCallToAction">
-                    <a href={project.sourceCode} target="_blank">
+                    <a
+                        href={project.sourceCode}
+                        rel="noreferrer"
+                        target="_blank"
+                    >
                         Source Code
                     </a>
 
                     {project.demo && (
-                        <a href={project.demo} target="_blank">
+                        <a href={project.demo} rel="noreferrer" target="_blank">
                             Demo
                         </a>
                     )}

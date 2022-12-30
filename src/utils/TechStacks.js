@@ -62,7 +62,7 @@ const express = new TechStack(
 );
 
 // export default TechStack;
-export default {
+const exportObj = {
     python,
     nodejs,
     css,
@@ -75,3 +75,4 @@ export default {
     android,
     firebase,
 };
+export default exportObj;

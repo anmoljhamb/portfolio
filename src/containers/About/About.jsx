@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { IfLoading, NextArrow, Particle, SideBar } from "../../components";
+import { IfLoading, NextArrow, SideBar } from "../../components";
 import Context from "../../context/Context";
 import { avatar, codingGif } from "../../assets";
 import { Cursor, useTypewriter } from "react-simple-typewriter";
@@ -17,7 +17,7 @@ const About = () => {
         }, 1000);
     });
 
-    const [text, count] = useTypewriter({
+    const text = useTypewriter({
         words: [
             "<Full Stack />",
             "<IoT />",
@@ -26,7 +26,7 @@ const About = () => {
         ],
         loop: true,
         delaySpeed: 1200,
-    });
+    })[0];
 
     const handleOnClick = (event) => {
         setLoading(true);

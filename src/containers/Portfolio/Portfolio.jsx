@@ -43,7 +43,7 @@ const Portfolio = () => {
                 <div className="techStacks">
                     <div
                         className={
-                            active == "all" ? "techStack active" : "techStack"
+                            active === "all" ? "techStack active" : "techStack"
                         }
                         onClick={() => {
                             setProjects(projectsData);
@@ -58,7 +58,7 @@ const Portfolio = () => {
                             <React.Fragment key={stack.name}>
                                 <span
                                     className={
-                                        active == stack.name ? "active" : ""
+                                        active === stack.name ? "active" : ""
                                     }
                                     onClick={handleOnClick(stack)}
                                 >

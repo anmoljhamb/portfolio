@@ -10,7 +10,7 @@ const SideBar = () => {
     return (
         <div className="sideBar">
             <li>
-                <a href={twitterLink} target="_blank">
+                <a href={twitterLink} rel="noreferrer" target="_blank">
                     <i
                         className="fa-brands fa-twitter fa-5x"
                         style={{ backgroundColor: "#1DA1F2" }}
@@ -18,7 +18,7 @@ const SideBar = () => {
                 </a>
             </li>
             <li>
-                <a href={githubLink} target="_blank">
+                <a href={githubLink} rel="noreferrer" target="_blank">
                     <i
                         className="fa-brands fa-github fa-5x"
                         style={{ backgroundColor: "#333" }}
@@ -26,7 +26,7 @@ const SideBar = () => {
                 </a>
             </li>
             <li>
-                <a href={linkedInLink} target="_blank">
+                <a href={linkedInLink} rel="noreferrer" target="_blank">
                     <i
                         className="fa-brands fa-linkedin fa-5x"
                         style={{ backgroundColor: "#0A66C2" }}
@@ -34,7 +34,7 @@ const SideBar = () => {
                 </a>
             </li>
             <li>
-                <a href={instagramLink} target="_blank">
+                <a href={instagramLink} rel="noreferrer" target="_blank">
                     <i
                         className="fa-brands fa-instagram fa-5x"
                         style={{ backgroundColor: "#e95950" }}
