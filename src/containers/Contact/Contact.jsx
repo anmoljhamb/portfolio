@@ -15,7 +15,7 @@ const Contact = () => {
     return (
         <IfLoading>
             <div className="reverse">
-                <NextArrow next="/utilities"></NextArrow>
+                <NextArrow next="/portfolio"></NextArrow>
             </div>
             <section>
                 <div className="contact">

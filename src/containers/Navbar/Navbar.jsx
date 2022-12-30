@@ -20,12 +20,12 @@ const Navbar = () => {
             <NavLink to="/portfolio" onClick={handleOnClick}>
                 Portfolio
             </NavLink>
-            <NavLink to="/utilities" onClick={handleOnClick}>
-                Utilities
-            </NavLink>
             <NavLink to="/contact" onClick={handleOnClick}>
                 Contact
             </NavLink>
+            <a href="https://github.com/anmoljhamb" onClick={handleOnClick}>
+                Github
+            </a>
         </div>
     );
 };

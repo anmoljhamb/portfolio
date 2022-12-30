@@ -93,7 +93,7 @@ const Portfolio = () => {
                     fontSize={20}
                 ></GitHubCalendar>
             </section>
-            <NextArrow next="/utilities"></NextArrow>
+            <NextArrow next="/contact"></NextArrow>
         </IfLoading>
     );
 };

@@ -12,6 +12,7 @@ const Utilities = () => {
         }, 1000);
     });
 
+    // This page can later be converted to experience once I have more than enough.
     return (
         <IfLoading>
             <div className="reverse">
@@ -19,7 +20,6 @@ const Utilities = () => {
             </div>
             <>
                 <h1>Utilities Page</h1>
-                <p>hello how you doing sir??</p>
             </>
             <NextArrow next="/contact"></NextArrow>
         </IfLoading>
