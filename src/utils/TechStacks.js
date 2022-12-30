@@ -6,6 +6,9 @@ import {
     DiReact,
     DiMongodb,
     DiSass,
+    DiJava,
+    DiAndroid,
+    DiFirebase,
 } from "react-icons/di";
 import ExpressLogo from "../assets/expressLogo";
 
@@ -41,6 +44,18 @@ const sass = new TechStack(
     "sass",
     <DiSass key="sass" className="techStack" title="sass" />
 );
+const java = new TechStack(
+    "java",
+    <DiJava key="java" className="techStack" title="java" />
+);
+const android = new TechStack(
+    "android",
+    <DiAndroid key="android" className="techStack" title="android" />
+);
+const firebase = new TechStack(
+    "firebase",
+    <DiFirebase key="firebase" className="techStack" title="firebase" />
+);
 const express = new TechStack(
     "express",
     <ExpressLogo key="express" className="techStack"></ExpressLogo>
@@ -56,4 +71,7 @@ export default {
     react,
     mongodb,
     sass,
+    java,
+    android,
+    firebase,
 };

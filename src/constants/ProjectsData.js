@@ -2,21 +2,6 @@ import techStacks from "../utils/TechStacks";
 
 const projectsData = [
     {
-        projectName: "CSS2JS",
-        projectImage:
-            "https://raw.githubusercontent.com/anmoljhamb/CSS2JS/main/screenshot.png",
-        projectInfo:
-            "An app to convert simple CSS code to Javascript DOM Manipulation code.",
-        sourceCode: "https://github.com/anmoljhamb/CSS2JS",
-        demo: "https://css2js.vercel.app/",
-        techStacks: [
-            techStacks.nodejs,
-            techStacks.css,
-            techStacks.express,
-            techStacks.javascript,
-        ],
-    },
-    {
         projectName: "TheAsteroids",
         projectImage:
             "https://raw.githubusercontent.com/anmoljhamb/TheAsteroids/main/screenshot.png",
@@ -33,14 +18,29 @@ const projectsData = [
         ],
     },
     {
-        projectName: "FedoraMediaWriter-Linux",
+        projectName: "CSS2JS",
         projectImage:
-            "https://raw.githubusercontent.com/anmoljhamb/fedora_media_writer_linux/master/screenshot.png",
+            "https://raw.githubusercontent.com/anmoljhamb/CSS2JS/main/screenshot.png",
         projectInfo:
-            "Fedora Media Writer for Linux. A script that allows the automation of downloading the ISO file, and burning it to a USB.",
-        sourceCode: "https://github.com/anmoljhamb/fedora_media_writer_linux",
+            "An app to convert simple CSS code to Javascript DOM Manipulation code.",
+        sourceCode: "https://github.com/anmoljhamb/CSS2JS",
+        demo: "https://css2js.vercel.app/",
+        techStacks: [
+            techStacks.nodejs,
+            techStacks.css,
+            techStacks.express,
+            techStacks.javascript,
+        ],
+    },
+    {
+        projectName: "NoteMate",
+        projectImage:
+            "https://raw.githubusercontent.com/anmoljhamb/NoteMate/main/screenshot.jpeg",
+        projectInfo:
+            "An app that allows you to share your notes, and ask doubts.",
+        sourceCode: "https://github.com/anmoljhamb/NoteMate",
         demo: "",
-        techStacks: [techStacks.python],
+        techStacks: [techStacks.java, techStacks.android, techStacks.firebase],
     },
     {
         projectName: "Typing Simulator",
@@ -53,12 +53,12 @@ const projectsData = [
         techStacks: [techStacks.python],
     },
     {
-        projectName: "NoteMate",
+        projectName: "FedoraMediaWriter-Linux",
         projectImage:
-            "https://raw.githubusercontent.com/anmoljhamb/NoteMate/main/screenshot.jpeg",
+            "https://raw.githubusercontent.com/anmoljhamb/fedora_media_writer_linux/master/screenshot.png",
         projectInfo:
-            "An app that allows you to share your notes, and ask doubts.",
-        sourceCode: "https://github.com/anmoljhamb/NoteMate",
+            "Fedora Media Writer for Linux. A script that allows the automation of downloading the ISO file, and burning it to a USB.",
+        sourceCode: "https://github.com/anmoljhamb/fedora_media_writer_linux",
         demo: "",
         techStacks: [techStacks.python],
     },
