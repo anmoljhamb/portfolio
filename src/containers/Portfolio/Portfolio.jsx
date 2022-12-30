@@ -3,8 +3,8 @@ import { IfLoading, NextArrow, Project } from "../../components";
 import Context from "../../context/Context";
 import "./Portfolio.scss";
 import GitHubCalendar from "react-github-calendar";
-import { DiPython } from "react-icons/di";
 import { colorVariables } from "../../constants";
+import { python } from "../../utils/TechStacks";
 
 const Portfolio = () => {
     const setLoading = useContext(Context).loadingState[1];
@@ -31,26 +31,22 @@ const Portfolio = () => {
                 <div className="techStacks">
                     <div className="techStack">all</div>
                     {/* Sorted by most used in my projects. */}
-                    <DiPython className="techStack"></DiPython>
-                    <DiPython className="techStack"></DiPython>
-                    <DiPython className="techStack"></DiPython>
-                    <DiPython className="techStack"></DiPython>
-                    <DiPython className="techStack"></DiPython>
-                    <DiPython className="techStack"></DiPython>
-                    <DiPython className="techStack"></DiPython>
-                    <DiPython className="techStack"></DiPython>
-                    <DiPython className="techStack"></DiPython>
-                    <DiPython className="techStack"></DiPython>
-                    <DiPython className="techStack"></DiPython>
-                    <DiPython className="techStack"></DiPython>
-                    <DiPython className="techStack"></DiPython>
-                    <DiPython className="techStack"></DiPython>
-                    <DiPython className="techStack"></DiPython>
-                    <DiPython className="techStack"></DiPython>
-                    <DiPython className="techStack"></DiPython>
-                    <DiPython className="techStack"></DiPython>
-                    <DiPython className="techStack"></DiPython>
-                    <DiPython className="techStack"></DiPython>
+                    {python.image}
+                    {python.image}
+                    {python.image}
+                    {python.image}
+                    {python.image}
+                    {python.image}
+                    {python.image}
+                    {python.image}
+                    {python.image}
+                    {python.image}
+                    {python.image}
+                    {python.image}
+                    {python.image}
+                    {python.image}
+                    {python.image}
+                    {python.image}
                 </div>
                 <div className="container">
                     <div className="projectRow">

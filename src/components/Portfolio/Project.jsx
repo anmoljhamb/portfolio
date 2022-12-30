@@ -1,5 +1,5 @@
 import React from "react";
-import { DiPython } from "react-icons/di";
+import { python } from "../../utils/TechStacks";
 
 const Project = () => {
     return (
@@ -26,10 +26,10 @@ const Project = () => {
                     </a>
 
                     <div className="techStacks">
-                        <DiPython className="techStack"></DiPython>
-                        <DiPython className="techStack"></DiPython>
-                        <DiPython className="techStack"></DiPython>
-                        <DiPython className="techStack"></DiPython>
+                        {python.image}
+                        {python.image}
+                        {python.image}
+                        {python.image}
                     </div>
 
                     <a href="https://css2js.vercel.app/" target="_blank">
