@@ -50,6 +50,9 @@ $transition: all 0.3s ease-in-out;
 
 html {
     font-size: 62.5%;
+    @media (-webkit-device-pixel-ratio: 1.25) {
+        font-size: 50%;
+    }
 }
 
 * {
