@@ -9,7 +9,10 @@ import {
     DiJava,
     DiAndroid,
     DiFirebase,
+    DiBootstrap,
+    DiSqllite,
 } from "react-icons/di";
+import { SiDjango } from "react-icons/si";
 import ExpressLogo from "../assets/expressLogo";
 
 class TechStack {
@@ -27,7 +30,10 @@ const nodejs = new TechStack(
     "nodejs",
     <DiNodejsSmall key="nodejs" className="techStack" title="NodeJS" />
 );
-const css = new TechStack("css", <DiCss3 key="css" className="techStack" />);
+const css = new TechStack(
+    "css",
+    <DiCss3 key="css" title="CSS" className="techStack" />
+);
 const javascript = new TechStack(
     "javascript",
     <DiJavascript key="javascript" className="techStack" title="JavaScript" />
@@ -56,6 +62,18 @@ const firebase = new TechStack(
     "firebase",
     <DiFirebase key="firebase" className="techStack" title="firebase" />
 );
+const bootstrap = new TechStack(
+    "bootstrap",
+    <DiBootstrap key="bootstrap" className="techStack" title="bootstrap" />
+);
+const sqllite = new TechStack(
+    "sqllite",
+    <DiSqllite key="sqllite" className="techStack" title="sqllite" />
+);
+const django = new TechStack(
+    "django",
+    <SiDjango key="django" className="techStack" title="django" />
+);
 const express = new TechStack(
     "express",
     <ExpressLogo key="express" className="techStack"></ExpressLogo>
@@ -74,5 +92,8 @@ const exportObj = {
     java,
     android,
     firebase,
+    bootstrap,
+    django,
+    sqllite,
 };
 export default exportObj;

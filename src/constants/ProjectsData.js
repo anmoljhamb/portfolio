@@ -15,6 +15,23 @@ const projectsData = [
             techStacks.react,
             techStacks.nodejs,
             techStacks.sass,
+            techStacks.javascript,
+        ],
+    },
+    {
+        projectName: "Inventory Management System",
+        projectImage:
+            "https://raw.githubusercontent.com/anmoljhamb/inventory-management-system/main/screenshots/ss_1.png",
+        projectInfo: "Inventory Management System with admin dashboard",
+        sourceCode: "https://github.com/anmoljhamb/inventory-management-system",
+        demo: "",
+        techStacks: [
+            techStacks.django,
+            techStacks.python,
+            techStacks.sqllite,
+            techStacks.bootstrap,
+            techStacks.javascript,
+            techStacks.css,
         ],
     },
     {
