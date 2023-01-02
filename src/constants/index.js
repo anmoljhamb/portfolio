@@ -1,7 +1,5 @@
-import variables from "../index.scss";
-
-export { default as colorVariables } from "../index.scss";
-
+import variables from "../variables.scss";
+export { default as colorVariables } from "../variables.scss";
 export const loadingColor = variables.color2;
 export const pageloadingSize = 150;
 export const appLoadingSize = 80;

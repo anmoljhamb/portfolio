@@ -6,3 +6,10 @@ $border: 0.2rem solid $color2;
 $border_radius: 0.5rem;
 $default_font: 2.5rem;
 $transition: all 0.3s ease-in-out;
+
+:export {
+    color1: $color1;
+    color2: $color2;
+    color3: $color3;
+    color4: $color4;
+}
