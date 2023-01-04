@@ -142,15 +142,7 @@ const About = () => {
                                 >
                                     Projects
                                 </Link>{" "}
-                                that I've workd on. Or the{" "}
-                                <Link
-                                    onClick={handleOnClick}
-                                    to="/portfolio"
-                                    className="highlight"
-                                >
-                                    Utilities
-                                </Link>{" "}
-                                I made to make my life easier.
+                                that I've workd on.
                             </div>
                         </div>
                     </div>
