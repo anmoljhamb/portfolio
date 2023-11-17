@@ -5,6 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import ContextHandler from "./context/ContextHandler";
 import { AppLoader } from "./components";
+import { Analytics } from "@vercel/analytics/react";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -32,6 +33,7 @@ const Root = () => {
         <Loading>
             <ContextHandler>
                 <BrowserRouter>
+                    <Analytics />
                     <App />
                 </BrowserRouter>
             </ContextHandler>
