@@ -1,7 +1,16 @@
+import React, { Suspense } from "react";
+
+const UserProfile = React.lazy(() => import("./UserProfile"));
+
 function App() {
   return (
     <>
-      <h1>Hello World!!!!</h1>
+      <div>
+        <h1>Hello World!!</h1>
+      </div>
+      <Suspense fallback="Loading...">
+        <UserProfile />
+      </Suspense>
     </>
   );
 }
