@@ -1,7 +1,6 @@
 import { RiCloseFill } from "react-icons/ri";
-import { socials } from "../assets/constants";
-import { Fragment } from "react";
 import { SocialIcon } from "react-social-icons";
+import { socials } from "../constants";
 
 type Props = { open: boolean; setOpen(arg0: boolean): void };
 
