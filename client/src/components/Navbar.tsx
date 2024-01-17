@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { RiCloseFill, RiMenu3Fill } from "react-icons/ri";
 import { Logo } from "../assets";
+import { FaGithub } from "react-icons/fa";
 
 function Navbar() {
   const [open, setOpen] = useState(false);
@@ -29,8 +30,14 @@ function Navbar() {
           <img src={Logo} alt="" />
           <h1 className="font-bold text-3xl tracking-[2px]">Portfolio</h1>
         </div>
+        <button className="hidden group text-brand rounded-lg border-2 border-brand hover:text-text hover:bg-brand hover:rounded-none md:flex md:flex-row text-3xl justify-center items-center p-2 gap-2 duration-300 ease-in-out transition-all font-semibold">
+          <FaGithub />
+          <p className="transition-all ease-in-out duration-300 tracking-normal group-hover:tracking-wide">
+            Github
+          </p>
+        </button>
         <button
-          className="text-5xl transition-all duration-300 hover:scale-105 hover:text-brand"
+          className="text-5xl transition-all duration-300 hover:scale-105 hover:text-brand md:hidden"
           onClick={() => setOpen(true)}
         >
           <RiMenu3Fill />
