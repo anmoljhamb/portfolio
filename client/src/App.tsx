@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 
-const UserProfile = React.lazy(() => import("./UserProfile"));
+const UserProfile = React.lazy(() => import("./SuspenseExample"));
 
 function App() {
   return (

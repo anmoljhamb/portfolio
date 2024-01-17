@@ -40,7 +40,7 @@ const UserProfile = () => {
   };
   return (
     <>
-      {user && (
+      {user && profileImage && (
         <section>
           <img alt={user.name} src={profileImage} />
           <h3 className="name">{user.name}</h3>
