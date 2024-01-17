@@ -1,3 +1,5 @@
+import HeroBgAnimation from "./HeroBgAnimation";
+
 const Hero = () => {
   return (
     <>
@@ -5,6 +7,10 @@ const Hero = () => {
         <div className="text-6xl">
           Hi!
           <div className="inline-block animate-wiggle">👋</div>
+          <div className="my-6 overflow-hidden mx-auto relative flex flex-row justify-center items-center w-full h-96">
+            <div className="w-72 h-72 rounded-full bg-text-primary z-20 border-[3px] border-brand"></div>
+            <HeroBgAnimation />
+          </div>
         </div>
       </section>
     </>
