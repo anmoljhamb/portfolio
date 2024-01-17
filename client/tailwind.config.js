@@ -7,7 +7,14 @@ export default {
         secondary: "#395B64",
         bgColor: "#222831",
         brand: "#2666CF",
-        text: "#F5F2E7",
+        text: {
+          primary: "#f5f2e7",
+          secondary: "#a8a299",
+        },
+      },
+      screens: {
+        xxs: "360px",
+        xs: "430px",
       },
     },
   },
