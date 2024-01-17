@@ -16,6 +16,16 @@ export default {
         xxs: "360px",
         xs: "430px",
       },
+      keyframes: {
+        wiggle: {
+          "0%, 30%": { transform: "rotate(-5deg)" },
+          "15%, 45%": { transform: "rotate(5deg)" },
+          "52%, 100%": { transform: "rotate(0deg)" },
+        },
+      },
+      animation: {
+        wiggle: "wiggle 2.5s ease-in-out infinite",
+      },
     },
   },
   plugins: [],
