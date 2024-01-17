@@ -1,4 +1,7 @@
 import { RiCloseFill } from "react-icons/ri";
+import { socials } from "../assets/constants";
+import { Fragment } from "react";
+import { SocialIcon } from "react-social-icons";
 
 type Props = { open: boolean; setOpen(arg0: boolean): void };
 
@@ -27,6 +30,23 @@ function MenuLink(props: MenuProps) {
   );
 }
 
+const Socials = () => {
+  return (
+    <>
+      {socials.map((link) => {
+        return (
+          <SocialIcon
+            url={link}
+            bgColor="#222831"
+            fgColor="#a8a299"
+            className="h-20 w-20"
+          />
+        );
+      })}
+    </>
+  );
+};
+
 export default function MenuOpen({ open, setOpen }: Props) {
   return (
     <div
@@ -45,8 +65,11 @@ export default function MenuOpen({ open, setOpen }: Props) {
         <MenuLink title="works" url="/" />
         <MenuLink title="about-me" url="/" />
         <MenuLink title="contact-me" url="/" />
-        <MenuLink title="Home" url="/" />
+        <MenuLink title="blog" url="/" />
       </ul>
+      <div className="absolute bottom-4 gap-4 left-4 right-4 flex flex-row justify-center items-center">
+        <Socials />
+      </div>
     </div>
   );
 }
