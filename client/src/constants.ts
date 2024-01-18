@@ -4,3 +4,9 @@ export const socials = [
   "https://instagram.com/heyitsanmolj",
   "https://twitter.com/heyitsanmolj",
 ];
+
+export const heroWords = [
+  "<LinuxAdvocate/>",
+  "<ProblemSolver/>",
+  "<OpenSource Enthusiast/>",
+];

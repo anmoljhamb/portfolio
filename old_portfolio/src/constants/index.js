@@ -7,3 +7,4 @@ export const twitterLink = "https://twitter.com/heyitsanmolj";
 export const githubLink = "https://github.com/anmoljhamb";
 export const instagramLink = "https://instagram.com/heyitsanmolj";
 export const linkedInLink = "https://www.linkedin.com/in/anmoljhamb";
+export const words = ["<UsesNeoVim btw/>", "<ComputerScienceUndergrad />"];
