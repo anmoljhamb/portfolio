@@ -1,3 +1,4 @@
+import { Pic } from "../assets";
 import HeroBgAnimation from "./HeroBgAnimation";
 
 const Hero = () => {
@@ -8,7 +9,9 @@ const Hero = () => {
           Hi!
           <div className="inline-block animate-wiggle">👋</div>
           <div className="my-6 overflow-hidden mx-auto relative flex flex-row justify-center items-center w-full h-96">
-            <div className="w-72 h-72 rounded-full bg-text-primary z-20 border-[3px] border-brand"></div>
+            <div className="w-72 h-72 rounded-full bg-text-primary z-10 border-[3px] border-brand overflow-hidden">
+              <img src={Pic} alt="" />
+            </div>
             <HeroBgAnimation />
           </div>
         </div>
