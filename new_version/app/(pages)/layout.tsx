@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "@/app/globals.css";
 import { clsx } from "clsx";
+import Arrows from "./Arrows";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,10 +29,13 @@ export default function RootLayout({
       <body
         className={clsx(
           `${geistSans.variable} ${geistMono.variable} antialiased`,
-          "",
+          "h-screen w-screen bg-dark flex relative",
         )}
       >
-        {children}
+        <div id="root" className="w-full h-full mx-24 outline-light outline-4">
+          {children}
+        </div>
+        <Arrows />
       </body>
     </html>
   );
