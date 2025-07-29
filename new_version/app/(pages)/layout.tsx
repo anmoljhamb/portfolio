@@ -28,6 +28,7 @@ export default function RootLayout({
       <body
         className={clsx(
           `${geistSans.variable} ${geistMono.variable} antialiased`,
+          "",
         )}
       >
         {children}

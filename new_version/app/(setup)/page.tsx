@@ -1,9 +1,16 @@
 "use client";
 
+import { APP_LOADING_TIMER } from "@/app/constants";
+import dynamic from "next/dynamic";
 import { redirect } from "next/navigation";
 import { useEffect } from "react";
-import { GridLoader } from "react-spinners";
-import { APP_LOADING_TIMER } from "@/app/constants";
+
+const ClientOnlyGridLoader = dynamic(
+  () => import("@/app/components/ClientOnlyGridLoader"),
+  {
+    ssr: false,
+  },
+);
 
 export default function Home() {
   useEffect(() => {
@@ -14,7 +21,7 @@ export default function Home() {
 
   return (
     <div className="w-screen h-screen bg-dark flex justify-center items-center">
-      <GridLoader loading size={90} speedMultiplier={0.8} color="#f05454" />
+      <ClientOnlyGridLoader />
     </div>
   );
 }
