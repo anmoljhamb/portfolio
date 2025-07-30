@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "@/app/globals.css";
 import { clsx } from "clsx";
 import Arrows from "./Arrows";
+import MenuIcon from "@/app/components/MenuIcon";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,6 +33,7 @@ export default function RootLayout({
           "h-screen w-screen bg-dark flex relative",
         )}
       >
+        <MenuIcon />
         <div id="root" className="w-full h-full mx-24 outline-light outline-4">
           {children}
         </div>

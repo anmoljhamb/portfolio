@@ -1,5 +1,26 @@
 @import "tailwindcss";
 
+:root {
+  --scale: 0.7;
+  --base-size: 1rem;
+
+  --icon-width: calc(6 * var(--base-size) * var(--scale));
+  --icon-height: calc(4.5 * var(--base-size) * var(--scale));
+  --icon-offset: calc(3 * var(--base-size) * var(--scale));
+
+  --bar-height: calc(0.9 * var(--base-size) * var(--scale));
+  --bar-radius: var(--bar-height);
+
+  --bar-2-top: calc(1.8 * var(--base-size) * var(--scale));
+  --bar-3-top: calc(3.6 * var(--base-size) * var(--scale));
+
+  --hover-shift: calc(0.5 * var(--base-size) * var(--scale));
+  --rotate-shift: calc(0.3 * var(--base-size) * var(--scale));
+  --left-shift: calc(0.8 * var(--base-size) * var(--scale));
+  --bar-3-open-top: calc(3.9 * var(--base-size) * var(--scale));
+  --bar-3-hover-top: calc(4.1 * var(--base-size) * var(--scale));
+}
+
 @theme {
   --color-dark: #222831;
   --color-steel: #30475e;
@@ -52,4 +73,66 @@
   left: 0;
   right: 100%;
   transition-delay: 0.15s;
+}
+
+#nav-icon {
+  width: var(--icon-width);
+  height: var(--icon-height);
+  position: absolute;
+  z-index: 10;
+  cursor: pointer;
+  transition: transform 0.6s ease-in-out;
+}
+
+#nav-icon span {
+  display: block;
+  position: absolute;
+  height: var(--bar-height);
+  width: 100%;
+  background: #f05454;
+  border-radius: var(--bar-radius);
+  opacity: 1;
+  left: 0;
+  transform: rotate(0deg);
+  transition: 0.25s ease-in-out;
+}
+
+#nav-icon span:nth-child(1) {
+  top: 0rem;
+  transform-origin: left center;
+}
+
+#nav-icon span:nth-child(2) {
+  top: var(--bar-2-top);
+  transform-origin: left center;
+}
+
+#nav-icon span:nth-child(3) {
+  top: var(--bar-3-top);
+  transform-origin: left center;
+}
+
+#nav-icon:hover span:nth-child(1) {
+  top: calc(-1 * var(--hover-shift));
+}
+
+#nav-icon:hover span:nth-child(3) {
+  top: var(--bar-3-hover-top);
+}
+
+#nav-icon.open span:nth-child(1) {
+  transform: rotate(45deg);
+  top: calc(-1 * var(--rotate-shift));
+  left: var(--left-shift);
+}
+
+#nav-icon.open span:nth-child(2) {
+  width: 0%;
+  opacity: 0;
+}
+
+#nav-icon.open span:nth-child(3) {
+  transform: rotate(-45deg);
+  top: var(--bar-3-open-top);
+  left: var(--left-shift);
 }
