@@ -3,7 +3,7 @@ import AnimatedWrapper from "@/app/components/AnimatedWrappr";
 
 export default function HomePage() {
   return (
-    <section className="h-screen flex flex-col justify-between items-center text-light">
+    <section className="h-screen flex flex-col justify-between items-center text-light bg-dark">
       <div className="flex-grow flex justify-center items-center">
         <AnimatedWrapper>
           <AboutHeaderContent />

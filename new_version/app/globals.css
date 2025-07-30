@@ -137,3 +137,16 @@
   top: var(--bar-3-open-top);
   left: var(--left-shift);
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+.timeline-container {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.timeline-container::-webkit-scrollbar {
+  display: none;
+}
