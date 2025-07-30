@@ -1,9 +1,10 @@
 "use client";
 
 import Arrow from "@/app/components/Arrow";
-import { useEffect, useMemo, useState } from "react";
-import { allRoutes } from "./routes";
+import Socials from "@/app/components/Socials";
 import { redirect, usePathname } from "next/navigation";
+import { useMemo } from "react";
+import { allRoutes } from "./routes";
 
 const Arrows = () => {
   const pathname = usePathname();
@@ -33,6 +34,7 @@ const Arrows = () => {
 
   return (
     <>
+      {currentIndex === 0 && <Socials />}
       {currentIndex > 0 && <Arrow reverse onClick={handleDecrement} />}
       {currentIndex < allRoutes.length - 1 && (
         <Arrow onClick={handleIncrement} />

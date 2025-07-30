@@ -1,9 +1,9 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import MenuIcon from "@/app/components/MenuIcon";
 import "@/app/globals.css";
 import { clsx } from "clsx";
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
 import Arrows from "./Arrows";
-import MenuIcon from "@/app/components/MenuIcon";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
