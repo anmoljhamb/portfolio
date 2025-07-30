@@ -48,7 +48,7 @@ const Socials = () => {
             <div
               key={social.link}
               className={clsx(
-                "px-4 py-4 text-4xl text-white",
+                "px-4 py-3 text-[41px] text-white",
                 "pl-10 -translate-x-6",
                 "hover:translate-x-0",
                 "ease-in-out duration-400 transition-all",
