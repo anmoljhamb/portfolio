@@ -194,3 +194,5 @@ html {
 .no-scroll-bar::-webkit-scrollbar {
   display: none;
 }
+
+@plugin "@tailwindcss/typography";

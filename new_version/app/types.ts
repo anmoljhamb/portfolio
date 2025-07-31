@@ -5,3 +5,15 @@ export type Social = {
   color: `#${string}`;
   icon: React.ReactNode;
 };
+
+export type Project = {
+  id: number;
+  name: string;
+  image: string | null;
+  projectSummary: string;
+  projectReadme: string;
+  sourceCodeLink: string;
+  demoLink: string | null;
+  techStack: string[];
+  dateMade: string;
+};

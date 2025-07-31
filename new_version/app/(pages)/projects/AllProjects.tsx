@@ -1,305 +1,55 @@
 "use client";
 
+import { PROJECTS_DATA } from "@/app/data/projects";
+import { TECH_ICONS } from "@/app/data/techIcons";
+import { Project } from "@/app/types";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   Calendar,
   ChevronDown,
-  Cloud,
   Code,
-  Coffee,
-  Cpu,
-  Database,
   ExternalLink,
-  FileText,
   Filter,
   Github,
-  Globe,
-  Lock,
   Monitor,
-  Palette,
   Search,
-  Server,
-  Smartphone,
   X,
-  Zap,
 } from "lucide-react";
+import Image from "next/image";
 import { useMemo, useState, useTransition } from "react";
-import ReactMarkdown from "react-markdown"; // Import for rendering markdown
+import ReactMarkdown from "react-markdown";
 
-// techIcons and sampleProjects data remains the same as you provided...
-// (I've omitted them here for brevity but they should be in your file)
-
-const techIcons = {
-  React: Code,
-  JavaScript: FileText,
-  TypeScript: FileText,
-  "Next.js": Globe,
-  "Node.js": Server,
-  Python: Coffee,
-  MongoDB: Database,
-  PostgreSQL: Database,
-  MySQL: Database,
-  Express: Server,
-  "Vue.js": Globe,
-  Angular: Globe,
-  "React Native": Smartphone,
-  Flutter: Smartphone,
-  AWS: Cloud,
-  Docker: Server,
-  GraphQL: Database,
-  Redis: Database,
-  Firebase: Cloud,
-  "Tailwind CSS": Palette,
-  SCSS: Palette,
-  CSS: Palette,
-  HTML: Monitor,
-  Git: Code,
-  Webpack: Zap,
-  Vite: Zap,
-  Jest: Code,
-  Cypress: Code,
-  Electron: Monitor,
-  PHP: Server,
-  Laravel: Server,
-  Django: Server,
-  FastAPI: Server,
-  Go: Cpu,
-  Rust: Cpu,
-  "C++": Cpu,
-  Java: Coffee,
-  "Spring Boot": Server,
-  Kubernetes: Cloud,
-  Nginx: Server,
-  Apache: Server,
-  OAuth: Lock,
-  JWT: Lock,
-  Stripe: ExternalLink,
-  "Socket.io": Zap,
-  WebRTC: Globe,
-  "Three.js": Monitor,
-  "D3.js": Monitor,
-  "Chart.js": Monitor,
-  Figma: Palette,
-  "Adobe XD": Palette,
-};
-
-// Sample project data
-const sampleProjects = [
-  {
-    id: 1,
-    name: "E-Commerce Dashboard",
-    image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=240&fit=crop",
-    projectSummary:
-      "A comprehensive admin dashboard for managing e-commerce operations with real-time analytics.",
-    projectReadme: `# E-Commerce Dashboard
-
-## Overview
-This project is a full-featured admin dashboard built for e-commerce platforms. It provides comprehensive tools for managing products, orders, customers, and analytics.
-
-## Features
-- Real-time sales analytics
-- Product inventory management
-- Customer relationship management
-- Order processing and tracking
-- Revenue forecasting
-- Multi-store support
-
-## Technical Implementation
-The dashboard is built using React with TypeScript for type safety and better developer experience. The backend leverages Node.js with Express and MongoDB for data persistence. Real-time updates are implemented using Socket.io.
-
-## Key Challenges Solved
-- Optimized large dataset rendering with virtualization
-- Implemented real-time notifications system
-- Created responsive design that works across all devices
-- Built secure authentication with role-based access control`,
-    sourceCodeLink: "https://github.com/username/ecommerce-dashboard",
-    demoLink: "https://ecommerce-dashboard-demo.vercel.app",
-    techStack: [
-      "React",
-      "TypeScript",
-      "Node.js",
-      "MongoDB",
-      "Socket.io",
-      "Tailwind CSS",
-    ],
-    dateMade: "2024-03-15",
-  },
-  {
-    id: 2,
-    name: "AI Chat Application",
-    image:
-      "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=240&fit=crop",
-    projectSummary:
-      "Real-time chat application with AI-powered responses and sentiment analysis.",
-    projectReadme: `# AI Chat Application
-
-## Overview
-An intelligent chat application that combines real-time messaging with AI-powered features including automated responses, sentiment analysis, and conversation insights.
-
-## Features
-- Real-time messaging with WebSocket
-- AI-powered chat responses
-- Sentiment analysis of conversations
-- Message translation
-- File sharing capabilities
-- Voice message support
-
-## Architecture
-Built with React and Next.js frontend, Express.js backend, and PostgreSQL database. Integrates with OpenAI API for AI features and uses Redis for session management.
-
-## Innovation
-- Custom sentiment analysis algorithm
-- Smart message routing
-- Adaptive AI personality based on conversation context`,
-    sourceCodeLink: "https://github.com/username/ai-chat-app",
-    demoLink: null,
-    techStack: [
-      "Next.js",
-      "React",
-      "PostgreSQL",
-      "Redis",
-      "OpenAI API",
-      "Socket.io",
-    ],
-    dateMade: "2024-01-22",
-  },
-  {
-    id: 3,
-    name: "Mobile Fitness Tracker",
-    image:
-      "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=240&fit=crop",
-    projectSummary:
-      "Cross-platform mobile app for tracking workouts, nutrition, and health metrics.",
-    projectReadme: `# Mobile Fitness Tracker
-
-## Overview
-A comprehensive fitness tracking application built with React Native, featuring workout logging, nutrition tracking, and health metrics visualization.
-
-## Features
-- Workout planning and tracking
-- Nutrition logging with barcode scanning
-- Progress visualization with charts
-- Social features and challenges
-- Integration with wearable devices
-- Offline functionality
-
-## Technical Highlights
-- Cross-platform development with React Native
-- Real-time data synchronization
-- Local data persistence with SQLite
-- Integration with health APIs (Apple Health, Google Fit)
-- Custom animation library for smooth UX
-
-## Impact
-- 10,000+ downloads within first month
-- 4.8-star rating on app stores
-- Featured in "Best Health Apps" category`,
-    sourceCodeLink: "https://github.com/username/fitness-tracker",
-    demoLink: "https://fitness-tracker-demo.app",
-    techStack: ["React Native", "TypeScript", "SQLite", "Firebase", "Chart.js"],
-    dateMade: "2023-11-08",
-  },
-  {
-    id: 4,
-    name: "Blockchain Voting System",
-    image: null,
-    projectSummary:
-      "Secure and transparent voting system built on blockchain technology.",
-    projectReadme: `# Blockchain Voting System
-
-## Overview
-A decentralized voting platform that ensures transparency, security, and immutability of election results using blockchain technology.
-
-## Features
-- Secure voter authentication
-- Immutable vote recording
-- Real-time result tracking
-- Audit trail functionality
-- Multi-election support
-- Mobile-responsive interface
-
-## Blockchain Integration
-Built on Ethereum using Solidity smart contracts. Implements custom voting logic with security measures against common attacks.
-
-## Security Features
-- End-to-end encryption
-- Zero-knowledge proofs for privacy
-- Multi-signature wallet integration
-- Audit logging
-- Anti-fraud mechanisms`,
-    sourceCodeLink: "https://github.com/username/blockchain-voting",
-    demoLink: null,
-    techStack: ["Solidity", "Web3.js", "React", "Ethereum", "IPFS", "MetaMask"],
-    dateMade: "2023-09-14",
-  },
-  {
-    id: 5,
-    name: "Data Visualization Platform",
-    image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=240&fit=crop",
-    projectSummary:
-      "Interactive platform for creating and sharing data visualizations and dashboards.",
-    projectReadme: `# Data Visualization Platform
-
-## Overview
-A powerful web-based platform that allows users to create interactive data visualizations and dashboards without coding knowledge.
-
-## Features
-- Drag-and-drop chart builder
-- Multiple data source connections
-- Real-time data updates
-- Collaborative editing
-- Export capabilities
-- Template library
-
-## Technical Architecture
-Built with Vue.js frontend and Python Django backend. Uses D3.js for custom visualizations and WebSocket for real-time updates.
-
-## Supported Visualizations
-- Bar charts, line graphs, pie charts
-- Heat maps and scatter plots
-- Geographic maps
-- Custom SVG visualizations
-- Interactive filtering and drill-down`,
-    sourceCodeLink: "https://github.com/username/data-viz-platform",
-    demoLink: "https://dataviz-platform-demo.com",
-    techStack: [
-      "Vue.js",
-      "Django",
-      "D3.js",
-      "PostgreSQL",
-      "WebSocket",
-      "Python",
-    ],
-    dateMade: "2024-02-10",
-  },
-];
-
-const getTechIcon = (tech) => {
-  const IconComponent = techIcons[tech] || Code;
+const getTechIcon = (tech: string) => {
+  const IconComponent = TECH_ICONS[tech] || Code;
   return <IconComponent className="w-4 h-4" />;
 };
 
-const formatDate = (dateString) => {
+const formatDate = (dateString: string) => {
   return new Date(dateString).toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
   });
 };
 
-const ProjectCard = ({ project, onClick, index }) => {
-  // Snappier animation variants for a faster feel
+const ProjectCard = ({
+  project,
+  onClick,
+  index,
+}: {
+  project: Project;
+  index: number;
+  onClick: () => void;
+}) => {
   const cardVariants = {
     initial: { opacity: 0, y: 20 },
     inView: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.3, delay: index * 0.04 }, // Faster duration & stagger
+      transition: { duration: 0.3, delay: index * 0.04 },
     },
     exit: {
       opacity: 0,
-      transition: { duration: 0.15 }, // Very fast exit
+      transition: { duration: 0.15 },
     },
   };
 
@@ -310,17 +60,17 @@ const ProjectCard = ({ project, onClick, index }) => {
       animate="inView"
       exit="exit"
       viewport={{ once: true, amount: 0.1 }}
-      // Add a browser hint for the hover animation + keep the hover effect
       className="bg-steel/60 backdrop-blur-sm border border-light/10 rounded-xl overflow-hidden shadow-lg hover:shadow-accent/30 transition-all duration-300 hover:scale-[1.03] cursor-pointer group will-change-transform"
       onClick={onClick}
     >
-      {/* Card Image */}
       <div className="h-48 bg-dark flex items-center justify-center overflow-hidden">
         {project.image ? (
-          <img
+          <Image
             src={project.image}
             alt={project.name}
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            height={148}
+            width={148}
           />
         ) : (
           <div className="text-text flex flex-col items-center">
@@ -330,7 +80,6 @@ const ProjectCard = ({ project, onClick, index }) => {
         )}
       </div>
 
-      {/* Card Content (no changes here) */}
       <div className="p-5">
         <h3 className="text-xl font-bold text-light mb-2 truncate">
           {project.name}
@@ -388,10 +137,13 @@ const ProjectCard = ({ project, onClick, index }) => {
   );
 };
 
-// ====================================================================
-// New Project Detail Modal
-// ====================================================================
-const ProjectDetailModal = ({ project, onClose }) => {
+const ProjectDetailModal = ({
+  project,
+  onClose,
+}: {
+  project: Project;
+  onClose: () => void;
+}) => {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -420,10 +172,11 @@ const ProjectDetailModal = ({ project, onClose }) => {
         <div className="p-6 overflow-y-auto">
           {project.image && (
             <div className="mb-6 rounded-lg overflow-hidden">
-              <img
+              <Image
                 src={project.image}
                 alt={project.name}
                 className="w-full h-auto max-h-80 object-cover"
+                fill
               />
             </div>
           )}
@@ -482,7 +235,6 @@ const ProjectDetailModal = ({ project, onClose }) => {
             <h3 className="text-lg font-semibold text-light mb-4 border-t border-light/10 pt-4">
               About This Project
             </h3>
-            {/* THIS IS THE NEW PART FOR RENDERING MARKDOWN */}
             <div className="prose prose-sm prose-invert max-w-none text-text">
               <ReactMarkdown>{project.projectReadme}</ReactMarkdown>
             </div>
@@ -494,62 +246,60 @@ const ProjectDetailModal = ({ project, onClose }) => {
 };
 
 const AllProjects = () => {
-  // State management hooks
-  const [projects] = useState(sampleProjects);
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [projects] = useState(PROJECTS_DATA);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedTechs, setSelectedTechs] = useState([]);
+  const [selectedTechs, setSelectedTechs] = useState<Array<string | null>>([]);
   const [sortBy, setSortBy] = useState("date-desc");
   const [showFilters, setShowFilters] = useState(true);
 
-  // 1. Initialize useTransition
   const [isPending, startTransition] = useTransition();
 
-  // useMemo hooks remain the same
   const allTechs = useMemo(() => {
     const techs = new Set(projects.flatMap((p) => p.techStack));
     return Array.from(techs).sort();
   }, [projects]);
 
   const filteredProjects = useMemo(() => {
-    // ... (filtering logic is unchanged)
-    let filtered = projects.filter((project) => {
+    const filtered = projects.filter((project) => {
       const searchLower = searchTerm.toLowerCase();
       const matchesSearch =
         project.name.toLowerCase().includes(searchLower) ||
         project.projectSummary.toLowerCase().includes(searchLower);
       const matchesTech =
         selectedTechs.length === 0 ||
-        selectedTechs.every((tech) => project.techStack.includes(tech));
+        selectedTechs.every((tech) => project.techStack.includes(tech!));
       return matchesSearch && matchesTech;
     });
 
     return filtered.sort((a, b) => {
       switch (sortBy) {
         case "date-asc":
-          return new Date(a.dateMade) - new Date(b.dateMade);
+          return (
+            new Date(a.dateMade).getTime() - new Date(b.dateMade).getTime()
+          );
         case "name-asc":
           return a.name.localeCompare(b.name);
         case "name-desc":
           return b.name.localeCompare(a.name);
         default:
-          return new Date(b.dateMade) - new Date(a.dateMade);
+          return (
+            new Date(b.dateMade).getTime() - new Date(a.dateMade).getTime()
+          );
       }
     });
   }, [projects, searchTerm, selectedTechs, sortBy]);
 
-  // 2. Wrap the slow state update in startTransition
-  const toggleTechFilter = (tech) => {
+  const toggleTechFilter = (tech: string | null) => {
     startTransition(() => {
       setSelectedTechs((prev) =>
-        prev.includes(tech) ? prev.filter((t) => t !== tech) : [...prev, tech],
+        prev!.includes(tech) ? prev.filter((t) => t !== tech) : [...prev, tech],
       );
     });
   };
 
   return (
     <div className="h-screen bg-dark text-text flex flex-col">
-      {/* Header and Filter sections are unchanged... */}
       <div className="p-6">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -570,7 +320,6 @@ const AllProjects = () => {
           transition={{ delay: 0.2 }}
           className="space-y-4 max-w-7xl mx-auto"
         >
-          {/* ... (The filter JSX is unchanged) ... */}
           <div className="flex flex-col md:flex-row gap-4">
             <div className="relative flex-grow">
               <Search
