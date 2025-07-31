@@ -1,9 +1,9 @@
-import MenuIcon from "@/app/components/MenuIcon";
 import "@/app/globals.css";
 import { clsx } from "clsx";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Arrows from "./Arrows";
+import Navigation from "@/app/components/Navbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,7 +33,7 @@ export default function RootLayout({
           "h-screen w-screen bg-dark flex relative overflow-hidden",
         )}
       >
-        <MenuIcon />
+        <Navigation />
         <div id="root" className="w-full h-full mx-24 overflow-hidden">
           {children}
         </div>
