@@ -93,6 +93,14 @@ export const timeline: TimelineItem[] = [
     photos: [1, 2].map((i) => `/about/timeline/centific_${i}.jpg`),
   },
   {
+    year: "December 2024",
+    title: "ICPC Regionals Qualifier",
+    desc: "A proud moment as our team, 'Geeky Nerds', qualified for the ICPC 2024 regionals for both Amritapuri and Kanpur sites. We tackled 3 problems successfully at the Amrita regionals and were just shy of solving a fourth. It was a memorable journey of teamwork, learning, and pushing our limits in my final year of competitive programming.",
+    type: "achievement",
+    icon: Code,
+    photos: ["/about/timeline/icpc.jpg"],
+  },
+  {
     year: "February '25 - Present",
     title: "Associate Software Engineer, CTO's Office",
     desc: "Joined ConsultAdd as an Associate Software Engineer, working directly with the CTO's Office. My current role involves pioneering new ideas by researching and building Proof of Concepts (PoCs), laying the groundwork for future innovation.",
