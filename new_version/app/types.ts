@@ -17,3 +17,14 @@ export type Project = {
   techStack: string[];
   dateMade: string;
 };
+
+export type TimelineItem = {
+  year: string;
+  title: string;
+  desc: string;
+  type: "education" | "work" | "achievement" | "future";
+  icon: React.ComponentType<{ className?: string }>;
+  photos: string[];
+  extraLink?: string;
+  extraText?: string;
+};

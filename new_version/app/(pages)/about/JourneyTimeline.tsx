@@ -1,86 +1,17 @@
 "use client";
-import React, { useRef, useState } from "react";
-import { AnimatePresence } from "framer-motion"; // <-- 1. Import AnimatePresence
-import { motion, useScroll, useTransform } from "framer-motion";
-import {
-  ChevronRight,
-  GraduationCap,
-  Briefcase,
-  Code,
-  Award,
-} from "lucide-react";
-import { PhotoModal } from "./PhotoModal";
+
 import ScrollIndicator from "@/app/components/ScrollIndicator";
-
-export interface TimelineItem {
-  id: number;
-  year: string;
-  title: string;
-  desc: string;
-  type: "education" | "work" | "achievement" | "future";
-  icon: React.ComponentType<{ className?: string }>;
-  photos: string[];
-}
-
-const timeline: TimelineItem[] = [
-  {
-    id: 1,
-    year: "2018",
-    title: "Started College",
-    desc: "Began my B.Tech journey in Computer Science at a prestigious university, diving into programming fundamentals and mathematics.",
-    type: "education",
-    icon: GraduationCap,
-    photos: [
-      "https://plus.unsplash.com/premium_photo-1750116257648-64c9c39dbd8d?q=80&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://plus.unsplash.com/premium_photo-1750116257648-64c9c39dbd8d?q=80&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    ],
-  },
-  {
-    id: 2,
-    year: "2019",
-    title: "First Programming Contest",
-    desc: "Participated in my first competitive programming contest, discovered my passion for problem-solving and algorithms.",
-    type: "achievement",
-    icon: Code,
-    photos: [
-      "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=800&h=600&fit=crop",
-    ],
-  },
-  {
-    id: 3,
-    year: "2020",
-    title: "First Internship",
-    desc: "Worked at a tech startup, learned React, Node.js, and backend development. Built my first full-stack application.",
-    type: "work",
-    icon: Briefcase,
-    photos: [
-      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=600&fit=crop",
-    ],
-  },
-  {
-    id: 4,
-    year: "2021-2022",
-    title: "Competition Streak",
-    desc: "Won multiple hackathons and coding competitions. Built innovative projects in AI/ML and web development.",
-    type: "achievement",
-    icon: Award,
-    photos: [
-      "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=800&h=600&fit=crop",
-    ],
-  },
-  {
-    id: 5,
-    year: "2022",
-    title: "Graduated with Honors",
-    desc: "Completed B.Tech with distinction, published research paper on machine learning applications in web development.",
-    type: "education",
-    icon: GraduationCap,
-    photos: [
-      "https://images.unsplash.com/photo-1607237138185-eedd9c632b0b?w=800&h=600&fit=crop",
-    ],
-  },
-];
+import { timeline } from "@/app/data/timeline";
+import { TimelineItem } from "@/app/types";
+import {
+  AnimatePresence,
+  motion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
+import { ChevronRight } from "lucide-react";
+import React, { useRef, useState } from "react";
+import { PhotoModal } from "./PhotoModal";
 
 interface TimelineCardProps {
   item: TimelineItem;
@@ -135,14 +66,26 @@ const TimelineCard: React.FC<TimelineCardProps> = ({
             <p className="text-text text-base leading-relaxed mb-5">
               {item.desc}
             </p>
-            {item.photos.length > 0 && (
-              <button
-                onClick={onPhotoClick}
-                className="font-semibold text-accent hover:text-light transition-colors duration-300 flex items-center gap-2"
-              >
-                View Photos <ChevronRight className="w-4 h-4" />
-              </button>
-            )}
+            <div className="flex justify-between">
+              {item.extraText && item.extraLink && (
+                <a
+                  href={item.extraLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-accent hover:text-light transition-colors duration-300 flex items-center gap-2"
+                >
+                  {item.extraText} <ChevronRight className="w-4 h-4" />
+                </a>
+              )}
+              {item.photos.length > 0 && (
+                <button
+                  onClick={onPhotoClick}
+                  className="font-semibold text-accent hover:text-light transition-colors duration-300 flex items-center gap-2"
+                >
+                  View Photos <ChevronRight className="w-4 h-4" />
+                </button>
+              )}
+            </div>
           </div>
         </div>
         <div className="w-2/12 flex justify-center">
@@ -201,7 +144,7 @@ const JourneyTimeline: React.FC = () => {
             />
             {timeline.map((item, index) => (
               <TimelineCard
-                key={item.id}
+                key={item.title}
                 item={item}
                 index={index}
                 containerRef={containerRef}
