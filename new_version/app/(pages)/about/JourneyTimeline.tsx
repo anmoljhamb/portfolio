@@ -1,6 +1,5 @@
 "use client";
 
-import ScrollIndicator from "@/app/components/ScrollIndicator";
 import { timeline } from "@/app/data/timeline";
 import { TimelineItem } from "@/app/types";
 import {
@@ -9,92 +8,105 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion";
-import { ChevronRight } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import React, { useRef, useState } from "react";
 import { PhotoModal } from "./PhotoModal";
+
+const ScrollIndicator = () => (
+  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 pointer-events-none">
+    <motion.div
+      animate={{ y: [0, 8, 0] }}
+      transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+    >
+      <ChevronDown className="w-8 h-8 text-text/30" />
+    </motion.div>
+  </div>
+);
 
 interface TimelineCardProps {
   item: TimelineItem;
   index: number;
-  containerRef: React.RefObject<HTMLDivElement | null>;
   onPhotoClick: () => void;
+  containerRef: React.RefObject<HTMLDivElement | null>;
 }
 
 const TimelineCard: React.FC<TimelineCardProps> = ({
   item,
   index,
-  containerRef,
   onPhotoClick,
+  containerRef,
 }) => {
   const isLeft = index % 2 === 0;
   const IconComponent = item.icon;
 
   const cardVariants = {
-    initial: { opacity: 0, y: 60, scale: 0.8 },
+    initial: { opacity: 0, y: 50, scale: 0.9 },
     inView: {
       opacity: 1,
       y: 0,
       scale: 1,
-      transition: { duration: 0.7, ease: "easeOut" },
+      transition: { duration: 0.6, ease: "easeOut" },
     },
   } as const;
 
   return (
     <motion.div
-      className="flex items-center w-full mb-16"
+      className="relative flex justify-between items-start w-full mb-16 last:mb-0"
       initial="initial"
       whileInView="inView"
-      viewport={{ root: containerRef, amount: 0.4 }}
+      viewport={{ root: containerRef, once: true, amount: 0.4 }}
       variants={cardVariants}
     >
       <div
-        className={`flex w-full items-center ${
-          isLeft ? "flex-row" : "flex-row-reverse"
+        className={`hidden md:block w-5/12 ${isLeft ? "order-3" : "order-1"}`}
+      />
+      <div className="z-10 flex items-center order-2 w-8 h-8 md:w-auto">
+        <div
+          className="w-4 h-4 rounded-full border-4 border-accent bg-dark"
+          style={{ boxShadow: "0 0 20px rgba(240, 84, 84, 0.7)" }}
+        />
+      </div>
+      <div
+        className={`w-full md:w-5/12 order-1 ${
+          isLeft ? "md:order-1" : "md:order-3"
         }`}
       >
-        <div className="w-5/12">
-          <div className="bg-steel/70 backdrop-blur-md rounded-xl p-6 shadow-2xl transition-all duration-300 hover:shadow-accent/20 hover:scale-[1.02]">
-            <div className="flex items-center gap-4 mb-4">
-              <div className="bg-dark/50 p-3 rounded-full border border-light/10">
-                <IconComponent className="w-6 h-6 text-accent" />
-              </div>
-              <span className="text-accent font-mono text-lg font-bold">
-                {item.year}
-              </span>
+        <div className="bg-steel/20 backdrop-blur-sm rounded-xl p-6 shadow-2xl transition-all duration-300 hover:shadow-accent/20 hover:scale-[1.02] border border-steel/30">
+          <div className="flex items-center gap-4 mb-4">
+            <div className="bg-dark/50 p-3 rounded-full border border-light/10">
+              <IconComponent className="w-6 h-6 text-accent" />
             </div>
-            <h3 className="text-light text-2xl font-bold mb-3">{item.title}</h3>
-            <p className="text-text text-base leading-relaxed mb-5">
-              {item.desc}
-            </p>
-            <div className="flex justify-between">
-              {item.extraText && item.extraLink && (
-                <a
-                  href={item.extraLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-semibold text-accent hover:text-light transition-colors duration-300 flex items-center gap-2"
-                >
-                  {item.extraText} <ChevronRight className="w-4 h-4" />
-                </a>
-              )}
-              {item.photos.length > 0 && (
-                <button
-                  onClick={onPhotoClick}
-                  className="font-semibold text-accent hover:text-light transition-colors duration-300 flex items-center gap-2"
-                >
-                  View Photos <ChevronRight className="w-4 h-4" />
-                </button>
-              )}
-            </div>
+            <span className="text-accent font-mono text-lg font-bold">
+              {item.year}
+            </span>
+          </div>
+          <h3 className="text-light text-2xl font-bold mb-3">{item.title}</h3>
+          <p className="text-text text-base leading-relaxed mb-5">
+            {item.desc}
+          </p>
+          <div className="flex flex-wrap gap-4 justify-between items-center">
+            {item.extraText && item.extraLink && (
+              <a
+                href={item.extraLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-accent hover:text-light transition-colors duration-300 flex items-center gap-1 group"
+              >
+                {item.extraText}
+                <ChevronDown className="w-4 h-4 transition-transform group-hover:translate-x-1 rotate-[-90deg]" />
+              </a>
+            )}
+            {item.photos && item.photos.length > 0 && (
+              <button
+                onClick={onPhotoClick}
+                className="font-semibold text-accent hover:text-light transition-colors duration-300 flex items-center gap-1 group ml-auto"
+              >
+                View Photos
+                <ChevronDown className="w-4 h-4 transition-transform group-hover:translate-x-1 rotate-[-90deg]" />
+              </button>
+            )}
           </div>
         </div>
-        <div className="w-2/12 flex justify-center">
-          <div
-            className="w-4 h-4 rounded-full border-4 border-accent bg-dark z-10"
-            style={{ boxShadow: "0 0 20px rgba(240, 84, 84, 0.7)" }}
-          />
-        </div>
-        <div className="w-5/12" />
       </div>
     </motion.div>
   );
@@ -104,7 +116,10 @@ const JourneyTimeline: React.FC = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [selectedItem, setSelectedItem] = useState<TimelineItem | null>(null);
 
-  const { scrollYProgress } = useScroll({ container: containerRef });
+  const { scrollYProgress } = useScroll({
+    container: containerRef,
+  });
+
   const progressBarHeight = useTransform(
     scrollYProgress,
     [0, 1],
@@ -121,40 +136,49 @@ const JourneyTimeline: React.FC = () => {
 
   return (
     <>
-      <div className="p-4 md:p-8 bg-dark">
+      <section className="relative w-full bg-dark py-16 sm:py-24 px-4 sm:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-light mb-4">My Journey</h2>
-          <p className="text-text max-w-2xl mx-auto">
-            A timeline of my professional and personal growth, from college days
-            to becoming a tech leader.
+          <h2 className="text-4xl md:text-5xl font-bold text-light mb-4">
+            My Journey
+          </h2>
+          <p className="text-text max-w-2xl mx-auto text-lg">
+            From a kid building his own <i>Jarvis</i> to a developer shaping the
+            future. Here are the milestones that made me.
           </p>
         </div>
-        <div
-          ref={containerRef}
-          className="relative h-[calc(80vh-100px)] w-full max-w-5xl mx-auto overflow-y-auto p-8 no-scroll-bar"
-        >
-          <div className="relative w-full">
-            <div className="absolute left-1/2 top-0 transform -translate-x-1/2 w-1 h-full bg-steel z-0" />
-            <motion.div
-              className="absolute left-1/2 top-0 transform -translate-x-1/2 w-1 bg-accent z-0"
-              style={{
-                height: progressBarHeight,
-                boxShadow: "0 0 10px rgba(240, 84, 84, 0.3)",
-              }}
-            />
-            {timeline.map((item, index) => (
-              <TimelineCard
-                key={item.title}
-                item={item}
-                index={index}
-                containerRef={containerRef}
-                onPhotoClick={() => handlePhotoClick(item)}
+
+        <div className="relative max-w-7xl mx-auto">
+          <div
+            ref={containerRef}
+            className="relative h-[70vh] overflow-y-auto no-scroll-bar"
+          >
+            <div className="relative w-full mx-auto px-4 sm:px-0">
+              <div className="absolute left-3.5 md:left-1/2 top-2 bottom-2 transform md:-translate-x-1/2 w-1 bg-steel/50 rounded-full z-0" />
+              <motion.div
+                className="absolute left-3.5 md:left-1/2 top-2 transform md:-translate-x-1/2 w-1 bg-accent z-0"
+                style={{
+                  height: progressBarHeight,
+                  boxShadow: "0 0 20px rgba(240, 84, 84, 0.5)",
+                }}
               />
-            ))}
+
+              <div className="relative flex flex-col items-center pt-4">
+                {timeline.map((item, index) => (
+                  <TimelineCard
+                    key={`${item.title}-${index}`}
+                    item={item}
+                    index={index}
+                    onPhotoClick={() => handlePhotoClick(item)}
+                    containerRef={containerRef}
+                  />
+                ))}
+              </div>
+            </div>
           </div>
+          <ScrollIndicator />
         </div>
-      </div>
-      <ScrollIndicator />
+      </section>
+
       <AnimatePresence>
         {selectedItem && (
           <PhotoModal item={selectedItem} onClose={handleCloseModal} />
