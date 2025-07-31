@@ -34,10 +34,7 @@ export default function RootLayout({
         )}
       >
         <MenuIcon />
-        <div
-          id="root"
-          className="w-full h-full mx-24 outline-light outline-4 overflow-hidden"
-        >
+        <div id="root" className="w-full h-full mx-24 overflow-hidden">
           {children}
         </div>
         <Arrows />
