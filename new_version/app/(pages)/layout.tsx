@@ -30,7 +30,7 @@ export default function RootLayout({
       <body
         className={clsx(
           `${geistSans.variable} ${geistMono.variable} antialiased`,
-          "h-screen w-screen bg-dark flex relative",
+          "h-screen w-screen bg-dark flex relative overflow-hidden",
         )}
       >
         <MenuIcon />

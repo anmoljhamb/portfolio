@@ -1,5 +1,6 @@
 "use client";
 import React, { useRef, useState } from "react";
+import { AnimatePresence } from "framer-motion"; // <-- 1. Import AnimatePresence
 import { motion, useScroll, useTransform } from "framer-motion";
 import {
   ChevronRight,
@@ -98,12 +99,12 @@ const TimelineCard: React.FC<TimelineCardProps> = ({
   const IconComponent = item.icon;
 
   const cardVariants = {
-    initial: { opacity: 0, y: 50, scale: 0.9 },
+    initial: { opacity: 0, y: 60, scale: 0.8 },
     inView: {
       opacity: 1,
       y: 0,
       scale: 1,
-      transition: { duration: 0.6, ease: "easeOut" },
+      transition: { duration: 0.7, ease: "easeOut" },
     },
   } as const;
 
@@ -112,11 +113,13 @@ const TimelineCard: React.FC<TimelineCardProps> = ({
       className="flex items-center w-full mb-16"
       initial="initial"
       whileInView="inView"
-      viewport={{ root: containerRef, once: true, amount: 0.4 }}
+      viewport={{ root: containerRef, amount: 0.4 }}
       variants={cardVariants}
     >
       <div
-        className={`flex w-full items-center ${isLeft ? "flex-row" : "flex-row-reverse"}`}
+        className={`flex w-full items-center ${
+          isLeft ? "flex-row" : "flex-row-reverse"
+        }`}
       >
         <div className="w-5/12">
           <div className="bg-steel/70 backdrop-blur-md rounded-xl p-6 shadow-2xl transition-all duration-300 hover:shadow-accent/20 hover:scale-[1.02]">
@@ -209,9 +212,11 @@ const JourneyTimeline: React.FC = () => {
         </div>
       </div>
       <ScrollIndicator />
-      {selectedItem && (
-        <PhotoModal item={selectedItem} onClose={handleCloseModal} />
-      )}
+      <AnimatePresence>
+        {selectedItem && (
+          <PhotoModal item={selectedItem} onClose={handleCloseModal} />
+        )}
+      </AnimatePresence>
     </>
   );
 };
