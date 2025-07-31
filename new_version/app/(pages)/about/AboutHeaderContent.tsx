@@ -1,4 +1,5 @@
 import Image from "next/image";
+import * as aboutData from "@/app/data/about";
 
 const AboutHeaderContent = () => {
   return (
@@ -15,16 +16,17 @@ const AboutHeaderContent = () => {
 
       <div>
         <h1 className="text-6xl font-extrabold text-accent tracking-tight">
-          Anmol Jhamb
+          {aboutData.FULL_NAME}
         </h1>
         <h2 className="text-2xl text-light mt-3 font-medium">
-          Software Engineer • OSS Dev • Neovim Addict
+          {aboutData.TAGS.join(" • ")}
         </h2>
         <p className="mt-6 text-lg text-text leading-relaxed font-normal">
-          I build sharp, scalable systems — from fast APIs to terminal-first
-          workflows. Currently building at{" "}
-          <span className="text-accent font-semibold">ConsultAdd</span>,
-          thriving in dark mode and contributing to open source.
+          {aboutData.SHORT_SUMMARY}
+          {/* I build sharp, scalable systems — from fast APIs to terminal-first */}
+          {/* workflows. Currently building at{" "} */}
+          {/* <span className="text-accent font-semibold">ConsultAdd</span>, */}
+          {/* thriving in dark mode and contributing to open source. */}
         </p>
       </div>
     </div>

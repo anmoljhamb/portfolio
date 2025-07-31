@@ -37,7 +37,6 @@ const Socials = () => {
   return (
     <div className="absolute top-1/2 -translate-y-1/2 z-10">
       {socials.map((social) => {
-        console.log(social.color);
         return (
           <a
             key={social.link}
