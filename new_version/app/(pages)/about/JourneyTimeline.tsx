@@ -188,7 +188,7 @@ const JourneyTimeline: React.FC = () => {
         </div>
         <div
           ref={containerRef}
-          className="relative h-[calc(80vh-100px)] w-full max-w-5xl mx-auto overflow-y-auto timeline-container p-8"
+          className="relative h-[calc(80vh-100px)] w-full max-w-5xl mx-auto overflow-y-auto p-8 no-scroll-bar"
         >
           <div className="relative w-full">
             <div className="absolute left-1/2 top-0 transform -translate-x-1/2 w-1 h-full bg-steel z-0" />
