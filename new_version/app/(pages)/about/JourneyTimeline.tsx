@@ -1,4 +1,3 @@
-// JourneyTimeline.tsx
 "use client";
 import React, { useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
@@ -9,7 +8,8 @@ import {
   Code,
   Award,
 } from "lucide-react";
-import { PhotoModal } from "./PhotoModal"; // Adjust path if needed
+import { PhotoModal } from "./PhotoModal";
+import ScrollIndicator from "@/app/components/ScrollIndicator";
 
 export interface TimelineItem {
   id: number;
@@ -84,7 +84,7 @@ const timeline: TimelineItem[] = [
 interface TimelineCardProps {
   item: TimelineItem;
   index: number;
-  containerRef: React.RefObject<HTMLElement>;
+  containerRef: React.RefObject<HTMLDivElement | null>;
   onPhotoClick: () => void;
 }
 
@@ -105,7 +105,7 @@ const TimelineCard: React.FC<TimelineCardProps> = ({
       scale: 1,
       transition: { duration: 0.6, ease: "easeOut" },
     },
-  };
+  } as const;
 
   return (
     <motion.div
@@ -155,7 +155,7 @@ const TimelineCard: React.FC<TimelineCardProps> = ({
 };
 
 const JourneyTimeline: React.FC = () => {
-  const containerRef = useRef<HTMLElement>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const [selectedItem, setSelectedItem] = useState<TimelineItem | null>(null);
 
   const { scrollYProgress } = useScroll({ container: containerRef });
@@ -185,7 +185,7 @@ const JourneyTimeline: React.FC = () => {
         </div>
         <div
           ref={containerRef}
-          className="relative h-[80vh] w-full max-w-5xl mx-auto overflow-y-auto timeline-container p-8"
+          className="relative h-[calc(80vh-100px)] w-full max-w-5xl mx-auto overflow-y-auto timeline-container p-8"
         >
           <div className="relative w-full">
             <div className="absolute left-1/2 top-0 transform -translate-x-1/2 w-1 h-full bg-steel z-0" />
@@ -208,6 +208,7 @@ const JourneyTimeline: React.FC = () => {
           </div>
         </div>
       </div>
+      <ScrollIndicator />
       {selectedItem && (
         <PhotoModal item={selectedItem} onClose={handleCloseModal} />
       )}
