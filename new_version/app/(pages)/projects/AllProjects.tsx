@@ -23,7 +23,7 @@ import {
   X,
   Zap,
 } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useMemo, useState, useTransition } from "react";
 import ReactMarkdown from "react-markdown"; // Import for rendering markdown
 
 // techIcons and sampleProjects data remains the same as you provided...
@@ -288,29 +288,30 @@ const formatDate = (dateString) => {
   });
 };
 
-// ====================================================================
-// New Project Card Component
-// ====================================================================
 const ProjectCard = ({ project, onClick, index }) => {
+  // Snappier animation variants for a faster feel
   const cardVariants = {
-    initial: { opacity: 0, y: 50, scale: 0.9 },
+    initial: { opacity: 0, y: 20 },
     inView: {
       opacity: 1,
       y: 0,
-      scale: 1,
-      transition: { duration: 0.5, delay: index * 0.1, ease: "easeOut" },
+      transition: { duration: 0.3, delay: index * 0.04 }, // Faster duration & stagger
+    },
+    exit: {
+      opacity: 0,
+      transition: { duration: 0.15 }, // Very fast exit
     },
   };
 
   return (
     <motion.div
-      layout
       variants={cardVariants}
       initial="initial"
       animate="inView"
-      exit={{ opacity: 0, scale: 0.9 }}
-      viewport={{ once: true, amount: 0.2 }}
-      className="bg-steel/60 backdrop-blur-sm border border-light/10 rounded-xl overflow-hidden shadow-lg hover:shadow-accent/30 transition-all duration-300 hover:scale-[1.03] cursor-pointer group"
+      exit="exit"
+      viewport={{ once: true, amount: 0.1 }}
+      // Add a browser hint for the hover animation + keep the hover effect
+      className="bg-steel/60 backdrop-blur-sm border border-light/10 rounded-xl overflow-hidden shadow-lg hover:shadow-accent/30 transition-all duration-300 hover:scale-[1.03] cursor-pointer group will-change-transform"
       onClick={onClick}
     >
       {/* Card Image */}
@@ -329,7 +330,7 @@ const ProjectCard = ({ project, onClick, index }) => {
         )}
       </div>
 
-      {/* Card Content */}
+      {/* Card Content (no changes here) */}
       <div className="p-5">
         <h3 className="text-xl font-bold text-light mb-2 truncate">
           {project.name}
@@ -337,7 +338,6 @@ const ProjectCard = ({ project, onClick, index }) => {
         <p className="text-text text-sm mb-4 h-10 line-clamp-2">
           {project.projectSummary}
         </p>
-
         <div className="flex flex-wrap gap-2 mb-4">
           {project.techStack.slice(0, 4).map((tech) => (
             <span
@@ -353,7 +353,6 @@ const ProjectCard = ({ project, onClick, index }) => {
             </span>
           )}
         </div>
-
         <div className="pt-3 border-t border-light/10 flex items-center justify-between text-sm">
           <div className="flex items-center gap-2 text-text/70">
             <Calendar size={14} />
@@ -495,7 +494,7 @@ const ProjectDetailModal = ({ project, onClose }) => {
 };
 
 const AllProjects = () => {
-  // State management hooks remain the same
+  // State management hooks
   const [projects] = useState(sampleProjects);
   const [selectedProject, setSelectedProject] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
@@ -503,13 +502,17 @@ const AllProjects = () => {
   const [sortBy, setSortBy] = useState("date-desc");
   const [showFilters, setShowFilters] = useState(true);
 
-  // useMemo hooks for filtering and sorting remain the same
+  // 1. Initialize useTransition
+  const [isPending, startTransition] = useTransition();
+
+  // useMemo hooks remain the same
   const allTechs = useMemo(() => {
     const techs = new Set(projects.flatMap((p) => p.techStack));
     return Array.from(techs).sort();
   }, [projects]);
 
   const filteredProjects = useMemo(() => {
+    // ... (filtering logic is unchanged)
     let filtered = projects.filter((project) => {
       const searchLower = searchTerm.toLowerCase();
       const matchesSearch =
@@ -535,16 +538,19 @@ const AllProjects = () => {
     });
   }, [projects, searchTerm, selectedTechs, sortBy]);
 
+  // 2. Wrap the slow state update in startTransition
   const toggleTechFilter = (tech) => {
-    setSelectedTechs((prev) =>
-      prev.includes(tech) ? prev.filter((t) => t !== tech) : [...prev, tech],
-    );
+    startTransition(() => {
+      setSelectedTechs((prev) =>
+        prev.includes(tech) ? prev.filter((t) => t !== tech) : [...prev, tech],
+      );
+    });
   };
 
   return (
     <div className="h-screen bg-dark text-text flex flex-col">
+      {/* Header and Filter sections are unchanged... */}
       <div className="p-6">
-        {/* Header Section */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -558,18 +564,17 @@ const AllProjects = () => {
           </p>
         </motion.div>
 
-        {/* === NEW & IMPROVED PURE TAILWIND FILTER SECTION === */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
           className="space-y-4 max-w-7xl mx-auto"
         >
+          {/* ... (The filter JSX is unchanged) ... */}
           <div className="flex flex-col md:flex-row gap-4">
-            {/* Custom Search Input */}
             <div className="relative flex-grow">
               <Search
-                className="absolute left-4 top-1/2 -translate-y-1/2 text-text/50"
+                className="absolute left-4 top-1/2 -translate-y-1/2 text-text/50 z-10"
                 size={20}
               />
               <input
@@ -580,9 +585,7 @@ const AllProjects = () => {
                 className="w-full pl-12 pr-4 py-3 bg-steel/60 backdrop-blur-sm text-light placeholder:text-text/50 border border-light/10 rounded-lg transition-all duration-300 focus:border-accent focus:ring-2 focus:ring-accent/30 focus:outline-none"
               />
             </div>
-
             <div className="flex gap-4">
-              {/* Custom Select Dropdown */}
               <div className="relative w-full md:w-[180px]">
                 <select
                   value={sortBy}
@@ -599,8 +602,6 @@ const AllProjects = () => {
                   size={20}
                 />
               </div>
-
-              {/* Custom Filter Button */}
               <button
                 onClick={() => setShowFilters(!showFilters)}
                 className="w-full md:w-auto px-4 py-3 bg-steel/60 backdrop-blur-sm border border-light/10 rounded-lg flex items-center justify-center gap-2 hover:bg-accent hover:border-accent transition-colors duration-300"
@@ -612,7 +613,6 @@ const AllProjects = () => {
               </button>
             </div>
           </div>
-
           <AnimatePresence>
             {showFilters && (
               <motion.div
@@ -623,16 +623,11 @@ const AllProjects = () => {
               >
                 <div className="p-4 bg-steel/40 border border-light/10 rounded-lg mt-2">
                   <div className="flex flex-wrap gap-2">
-                    {/* Custom Tech Toggles */}
                     {allTechs.map((tech) => (
                       <button
                         key={tech}
                         onClick={() => toggleTechFilter(tech)}
-                        className={`px-3 py-1.5 rounded-full text-sm font-medium flex items-center gap-2 transition-all duration-200 transform hover:scale-105 ${
-                          selectedTechs.includes(tech)
-                            ? "bg-accent text-light shadow-lg shadow-accent/30"
-                            : "bg-dark/70 text-text/80 hover:bg-steel"
-                        }`}
+                        className={`px-3 py-1.5 rounded-full text-sm font-medium flex items-center gap-2 transition-all duration-200 transform hover:scale-105 ${selectedTechs.includes(tech) ? "bg-accent text-light shadow-lg shadow-accent/30" : "bg-dark/70 text-text/80 hover:bg-steel"}`}
                       >
                         {getTechIcon(tech)} {tech}
                       </button>
@@ -640,10 +635,11 @@ const AllProjects = () => {
                   </div>
                   {selectedTechs.length > 0 && (
                     <button
-                      onClick={() => setSelectedTechs([])}
+                      onClick={() => toggleTechFilter(null)}
                       className="mt-4 text-sm font-semibold text-accent/80 hover:text-accent transition-colors"
                     >
-                      Clear all filters
+                      {" "}
+                      Clear all filters{" "}
                     </button>
                   )}
                 </div>
@@ -653,12 +649,11 @@ const AllProjects = () => {
         </motion.div>
       </div>
 
-      {/* SCROLLABLE PROJECT GRID & MODAL (No changes needed here) */}
-      <div className="flex-1 overflow-y-auto px-6 pb-6">
-        <motion.div
-          layout
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto"
-        >
+      {/* 3. Use `isPending` to provide visual feedback on the grid */}
+      <div
+        className={`flex-1 overflow-y-auto px-6 pb-6 transition-opacity duration-300 ${isPending ? "opacity-60" : "opacity-100"}`}
+      >
+        <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto">
           <AnimatePresence>
             {filteredProjects.map((project, index) => (
               <ProjectCard
@@ -670,17 +665,17 @@ const AllProjects = () => {
             ))}
           </AnimatePresence>
         </motion.div>
-        {filteredProjects.length === 0 && (
+        {filteredProjects.length === 0 && !isPending && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
             className="text-center py-16 text-text/70"
           >
             <Search size={48} className="mx-auto mb-4" />
             <h3 className="text-xl font-semibold text-light mb-2">
               No Projects Found
             </h3>
-            <p>Try a different search term or clear the filters.</p>
+            <p>Try adjusting your search or filter criteria.</p>
           </motion.div>
         )}
       </div>
