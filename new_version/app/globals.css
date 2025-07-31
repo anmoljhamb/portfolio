@@ -150,3 +150,12 @@ html {
 .timeline-container::-webkit-scrollbar {
   display: none;
 }
+
+.no-scroll-bar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.no-scroll-bar::-webkit-scrollbar {
+  display: none;
+}

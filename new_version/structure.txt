@@ -1,0 +1,38 @@
+3. WhyICode.tsx
+A small section on your “why” — keep it human
+
+Example: “I fell in love with building systems that help people…”
+
+You can quote your own philosophy or thinking here.
+
+4. TechNerd.tsx
+Dedicated to your deep interests:
+
+Open Source: Contributions, favorite tools/repos
+
+Neovim: Dotfiles, setup, community stuff
+
+Could use icons or logos
+
+
+
+
+@theme {
+  --color-dark: #222831;
+  --color-steel: #30475e;
+  --color-accent: #f05454;
+  --color-light: #dddddd;
+  --color-text: #cfd2dc;
+}
+
+
+which can be used like color-dark color-steel etc in tailwind classes
+
+i want to combine these two sections and create a page.
+
+      <section className="h-screen w-full snap-start">
+
+        <ComesHere />
+
+      </section>
+
