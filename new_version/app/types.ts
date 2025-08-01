@@ -16,6 +16,9 @@ export type Project = {
   demoLink: string | null;
   techStack: string[];
   dateMade: string;
+  stars: number;
+  watchers: number;
+  forks: number;
 };
 
 export type TimelineItem = {

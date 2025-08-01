@@ -1,6 +1,5 @@
 "use client";
 
-import { PROJECTS_DATA } from "@/app/data/projects";
 import { TECH_ICONS } from "@/app/data/techIcons";
 import { Project } from "@/app/types";
 import { AnimatePresence, motion } from "framer-motion";
@@ -176,7 +175,9 @@ const ProjectDetailModal = ({
                 src={project.image}
                 alt={project.name}
                 className="w-full h-auto max-h-80 object-cover"
-                fill
+                width={500}
+                height={500}
+                // fill
               />
             </div>
           )}
@@ -245,8 +246,7 @@ const ProjectDetailModal = ({
   );
 };
 
-const AllProjects = () => {
-  const [projects] = useState(PROJECTS_DATA);
+const AllProjects = ({ projects }: { projects: Project[] }) => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedTechs, setSelectedTechs] = useState<Array<string | null>>([]);

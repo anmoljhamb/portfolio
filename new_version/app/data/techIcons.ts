@@ -67,4 +67,10 @@ export const TECH_ICONS: Record<string, typeof Code> = {
   "Chart.js": Monitor,
   Figma: Palette,
   "Adobe XD": Palette,
+  Linux: Monitor,
+  Fedora: FileText,
+  CLI: Code,
+  Automation: Zap,
+  "Bootable USB": Server,
+  "Web Scraping": Globe,
 };

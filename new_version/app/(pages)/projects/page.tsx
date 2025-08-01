@@ -1,14 +1,17 @@
-import { PAGE_LOADING_TIMER } from "@/app/constants";
-import { delay } from "@/app/utils/misc";
+import { fetchAllProjects } from "@/app/actions/fetchProjects";
 import AllProjects from "./AllProjects";
 
 const Page = async () => {
-  await delay(PAGE_LOADING_TIMER);
+  const projects = (await fetchAllProjects()).filter(
+    (project) => project !== null,
+  );
+
+  console.log(projects);
 
   return (
     <div className="h-full w-full overflow-y-auto scroll-smooth">
       <section className="h-screen w-full">
-        <AllProjects />
+        <AllProjects projects={projects} />
       </section>
     </div>
   );
