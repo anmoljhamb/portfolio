@@ -48,7 +48,10 @@ export async function fetchProjectFromGitHub(
     const readmeContent = Buffer.from(readmeData.content, "base64").toString(
       "utf8",
     );
-    const firstLine = readmeContent.split("\n")[0];
+    const lines = readmeContent
+      .split("\n")
+      .filter((line) => !line.includes("screenshot.png"));
+    const firstLine = lines[0];
     const name = firstLine.replace(/^#\s*/, "").trim() || repoData.name;
 
     const imageUrl = `https://raw.githubusercontent.com/${owner}/${repo}/HEAD/screenshot.png`;
@@ -60,7 +63,7 @@ export async function fetchProjectFromGitHub(
       name,
       image: validImage,
       projectSummary: repoData.description || "No description provided.",
-      projectReadme: readmeContent,
+      projectReadme: lines.join("\n"),
       sourceCodeLink: repoData.html_url,
       demoLink: repoData.homepage || null,
       techStack: (topicsData.names || []).map(formatTechName),

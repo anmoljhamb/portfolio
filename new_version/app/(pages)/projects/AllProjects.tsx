@@ -59,7 +59,7 @@ const ProjectCard = ({
       animate="inView"
       exit="exit"
       viewport={{ once: true, amount: 0.1 }}
-      className="bg-steel/60 backdrop-blur-sm border border-light/10 rounded-xl overflow-hidden shadow-lg hover:shadow-accent/30 transition-all duration-300 hover:scale-[1.03] cursor-pointer group will-change-transform"
+      className="flex flex-col h-full bg-steel/60 backdrop-blur-sm border border-light/10 rounded-xl overflow-hidden shadow-lg hover:shadow-accent/30 transition-all duration-300 hover:scale-[1.03] cursor-pointer group will-change-transform"
       onClick={onClick}
     >
       <div className="h-48 bg-dark flex items-center justify-center overflow-hidden">
@@ -68,8 +68,8 @@ const ProjectCard = ({
             src={project.image}
             alt={project.name}
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-            height={148}
-            width={148}
+            height={300}
+            width={300}
           />
         ) : (
           <div className="text-text flex flex-col items-center">
@@ -79,27 +79,30 @@ const ProjectCard = ({
         )}
       </div>
 
-      <div className="p-5">
-        <h3 className="text-xl font-bold text-light mb-2 truncate">
-          {project.name}
-        </h3>
-        <p className="text-text text-sm mb-4 h-10 line-clamp-2">
-          {project.projectSummary}
-        </p>
-        <div className="flex flex-wrap gap-2 mb-4">
-          {project.techStack.slice(0, 4).map((tech) => (
-            <span
-              key={tech}
-              className="px-2.5 py-1 bg-dark/70 rounded-full text-xs text-text/80 flex items-center gap-1.5"
-            >
-              {getTechIcon(tech)} {tech}
-            </span>
-          ))}
-          {project.techStack.length > 4 && (
-            <span className="px-2.5 py-1 bg-dark/70 rounded-full text-xs text-text/80">
-              +{project.techStack.length - 4}
-            </span>
-          )}
+      <div className="p-5 flex flex-col flex-1 justify-between">
+        <div>
+          <h3 className="text-xl font-bold text-light mb-2 truncate">
+            {project.name}
+          </h3>
+          <p className="text-text text-sm mb-4 h-10 line-clamp-2">
+            {project.projectSummary}
+          </p>
+
+          <div className="flex flex-wrap gap-2 mb-4">
+            {project.techStack.slice(0, 4).map((tech) => (
+              <span
+                key={tech}
+                className="px-2.5 py-1 bg-dark/70 rounded-full text-xs text-text/80 flex items-center gap-1.5"
+              >
+                {getTechIcon(tech)} {tech}
+              </span>
+            ))}
+            {project.techStack.length > 4 && (
+              <span className="px-2.5 py-1 bg-dark/70 rounded-full text-xs text-text/80">
+                +{project.techStack.length - 4}
+              </span>
+            )}
+          </div>
         </div>
         <div className="pt-3 border-t border-light/10 flex items-center justify-between text-sm">
           <div className="flex items-center gap-2 text-text/70">
