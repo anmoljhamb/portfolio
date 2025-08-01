@@ -12,6 +12,34 @@ function formatTechName(topic: string): string {
     .join(" ");
 }
 
+function extractImageUrls(
+  readme: string,
+  owner: string,
+  repo: string,
+): string[] {
+  const urls = new Set<string>();
+
+  // Match Markdown image syntax ![alt](url)
+  const markdownRegex = /!\[.*?\]\((.*?)\)/g;
+  let match;
+  while ((match = markdownRegex.exec(readme)) !== null) {
+    urls.add(match[1]);
+  }
+
+  // Match <img src="url">
+  const htmlImgRegex = /<img[^>]*src=["']([^"']+)["']/g;
+  while ((match = htmlImgRegex.exec(readme)) !== null) {
+    urls.add(match[1]);
+  }
+
+  // Normalize relative URLs
+  const baseUrl = `https://raw.githubusercontent.com/${owner}/${repo}/HEAD/`;
+  return Array.from(urls).map((url) => {
+    if (url.startsWith("http")) return url;
+    return baseUrl + url.replace(/^\.?\//, ""); // remove './' or '/' prefix
+  });
+}
+
 export async function fetchProjectFromGitHub(
   repoUrl: string,
 ): Promise<Project | null> {
@@ -50,18 +78,20 @@ export async function fetchProjectFromGitHub(
     );
     const lines = readmeContent
       .split("\n")
-      .filter((line) => !line.includes("screenshot.png"));
+      .filter((line) => !line.includes("screenshot.png"))
+      .filter((line) => !line.startsWith("<!--"));
+
     const firstLine = lines[0];
     const name = firstLine.replace(/^#\s*/, "").trim() || repoData.name;
 
-    const imageUrl = `https://raw.githubusercontent.com/${owner}/${repo}/HEAD/screenshot.png`;
-    const imgCheck = await fetch(imageUrl);
-    const validImage = imgCheck.ok ? imageUrl : null;
+    const images = extractImageUrls(readmeContent, owner, repo);
+
+    console.log(images);
 
     const project: Project = {
       id: repoData.id,
       name,
-      image: validImage,
+      images,
       projectSummary: repoData.description || "No description provided.",
       projectReadme: lines.join("\n"),
       sourceCodeLink: repoData.html_url,

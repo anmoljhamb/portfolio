@@ -63,9 +63,9 @@ const ProjectCard = ({
       onClick={onClick}
     >
       <div className="h-48 bg-dark flex items-center justify-center overflow-hidden">
-        {project.image ? (
+        {project.images.length > 0 ? (
           <Image
-            src={project.image}
+            src={project.images[0]}
             alt={project.name}
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
             height={300}
@@ -172,10 +172,10 @@ const ProjectDetailModal = ({
         </div>
 
         <div className="p-6 overflow-y-auto">
-          {project.image && (
+          {project.images.length > 0 && (
             <div className="mb-6 rounded-lg overflow-hidden">
               <Image
-                src={project.image}
+                src={project.images[0]}
                 alt={project.name}
                 className="w-full h-auto max-h-80 object-cover"
                 width={500}

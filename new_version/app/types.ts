@@ -9,7 +9,7 @@ export type Social = {
 export type Project = {
   id: number;
   name: string;
-  image: string | null;
+  images: string[];
   projectSummary: string;
   projectReadme: string;
   sourceCodeLink: string;
