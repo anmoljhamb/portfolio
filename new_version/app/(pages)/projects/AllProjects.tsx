@@ -171,7 +171,7 @@ const ProjectDetailModal = ({
           </button>
         </div>
 
-        <div className="p-6 overflow-y-auto">
+        <div className="p-6 overflow-y-auto colored-scroll-bar">
           {project.images.length > 0 && (
             <div className="mb-6 rounded-lg overflow-hidden">
               <Image
@@ -463,9 +463,9 @@ const AllProjects = ({ projects }: { projects: Project[] }) => {
       <div
         className={`flex-1 overflow-y-auto px-6 pb-6 transition-opacity duration-300 ${
           isPending ? "opacity-60" : "opacity-100"
-        }`}
+        } colored-scroll-bar`}
       >
-        <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto">
+        <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto colored-scroll-bar">
           <AnimatePresence>
             {filteredProjects.map((project, index) => (
               <ProjectCard
