@@ -12,5 +12,5 @@ export const githubProjects = [
   "https://github.com/anmoljhamb/vscode-spotify-controller",
   "https://github.com/anmoljhamb/sassTemplateGenerator",
   "https://github.com/anmoljhamb/MailClient",
-  "https://github.com/anmoljhamb/realtimeDataCollection",
+  "https://github.com/anmoljhamb/realtime-data-collection",
 ];
