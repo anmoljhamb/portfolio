@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { X, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { TimelineItem } from "./JourneyTimeline";
+import { TimelineItem } from "@/app/types";
 
 interface PhotoModalProps {
   item: TimelineItem;

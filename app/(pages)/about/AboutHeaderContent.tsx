@@ -17,11 +17,6 @@ const AboutHeaderContent = () => {
               "radial-gradient(circle at 50% 50%, transparent 0%, black 50%)",
               "radial-gradient(circle at 50% 50%, transparent 0%, black 150%)",
             ],
-            WebkitMaskImage: [
-              "radial-gradient(circle at 50% 50%, transparent 0%, black 150%)",
-              "radial-gradient(circle at 50% 50%, transparent 0%, black 50%)",
-              "radial-gradient(circle at 50% 50%, transparent 0%, black 150%)",
-            ],
           }}
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
         />

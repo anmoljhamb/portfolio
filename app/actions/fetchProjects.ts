@@ -5,13 +5,6 @@ import { githubProjects } from "../data/projects";
 
 const GITHUB_API_URL = "https://api.github.com";
 
-function formatTechName(topic: string): string {
-  return topic
-    .split("-")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
-}
-
 function extractImageUrls(
   readme: string,
   owner: string,

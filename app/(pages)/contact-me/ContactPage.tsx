@@ -50,7 +50,7 @@ const ContactPage = () => {
           variants={itemVariants}
         >
           <h1 className="bg-gradient-to-r from-light to-accent bg-clip-text text-5xl font-bold text-transparent md:text-6xl">
-            Let's Connect
+            Let&apos;s Connect
           </h1>
           <p className="mt-4 text-lg leading-relaxed">
             Have a project in mind or just want to say hi? My inbox is always

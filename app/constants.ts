@@ -1,5 +1,3 @@
-import { LINKEDIN_URL } from "./data/socials";
-
 export const APP_LOADING_TIMER = 1000;
 export const PAGE_LOADING_TIMER = 300;
 
