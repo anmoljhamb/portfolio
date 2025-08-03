@@ -381,7 +381,7 @@ const AllProjects = ({ projects }: { projects: Project[] }) => {
               </div>
               <button
                 onClick={() => setShowFilters(!showFilters)}
-                className="w-full md:w-auto px-4 py-3 bg-steel/50 backdrop-blur-sm border border-light/10 rounded-lg flex items-center justify-center gap-2 hover:bg-accent hover:border-accent transition-colors duration-300"
+                className="w-full md:w-auto px-4 py-3 bg-steel/50 backdrop-blur-sm border border-light/10 rounded-lg hidden md:flex items-center justify-center gap-2 hover:bg-accent hover:border-accent transition-colors duration-300"
               >
                 <Filter size={16} /> Filters
                 <ChevronDown
@@ -398,7 +398,7 @@ const AllProjects = ({ projects }: { projects: Project[] }) => {
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: "auto" }}
                 exit={{ opacity: 0, height: 0 }}
-                className="overflow-hidden"
+                className="overflow-hidden hidden md:block"
               >
                 <div className="p-4 bg-steel/10 border border-light/10 rounded-lg mt-2">
                   <div className="flex flex-wrap gap-2 items-center content-center">

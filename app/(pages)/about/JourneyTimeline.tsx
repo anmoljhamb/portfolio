@@ -60,7 +60,7 @@ const TimelineCard: React.FC<TimelineCardProps> = ({
       <div
         className={`hidden md:block w-5/12 ${isLeft ? "order-3" : "order-1"}`}
       />
-      <div className="z-10 flex items-center order-2 w-8 h-8 md:w-auto">
+      <div className="z-10 hidden md:block flex items-center order-2 w-8 h-8 md:w-auto">
         <div
           className="w-4 h-4 rounded-full border-4 border-accent bg-dark"
           style={{ boxShadow: "0 0 20px rgba(240, 84, 84, 0.7)" }}
@@ -153,9 +153,9 @@ const JourneyTimeline: React.FC = () => {
             className="relative h-[70vh] overflow-y-auto no-scroll-bar"
           >
             <div className="relative w-full mx-auto px-4 sm:px-0">
-              <div className="absolute left-3.5 md:left-1/2 top-2 bottom-2 transform md:-translate-x-1/2 w-1 bg-steel/50 rounded-full z-0" />
+              <div className="absolute hidden md:block left-3.5 md:left-1/2 top-2 bottom-2 transform md:-translate-x-1/2 w-1 bg-steel/50 rounded-full z-0" />
               <motion.div
-                className="absolute left-3.5 md:left-1/2 top-2 transform md:-translate-x-1/2 w-1 bg-accent z-0"
+                className="absolute hidden md:block left-3.5 md:left-1/2 top-2 transform md:-translate-x-1/2 w-1 bg-accent z-0"
                 style={{
                   height: progressBarHeight,
                   boxShadow: "0 0 20px rgba(240, 84, 84, 0.5)",

@@ -63,7 +63,7 @@ const ContactPage = () => {
             </a>
             .
           </p>
-          <div className="mt-10 flex space-x-4">
+          <div className="mt-10 hidden md:flex space-x-4">
             {socials.map((social) => (
               <motion.a
                 key={social.name}
