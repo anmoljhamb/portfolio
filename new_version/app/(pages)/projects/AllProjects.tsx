@@ -252,16 +252,11 @@ const ProjectDetailModal = ({
 const AllProjects = ({ projects }: { projects: Project[] }) => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedTechs, setSelectedTechs] = useState<Array<string | null>>([]);
+  const [selectedTechs, setSelectedTechs] = useState<string[]>([]);
   const [sortBy, setSortBy] = useState("date-desc");
   const [showFilters, setShowFilters] = useState(true);
 
   const [isPending, startTransition] = useTransition();
-
-  const allTechs = useMemo(() => {
-    const techs = new Set(projects.flatMap((p) => p.techStack));
-    return Array.from(techs).sort();
-  }, [projects]);
 
   const filteredProjects = useMemo(() => {
     const filtered = projects.filter((project) => {
@@ -293,12 +288,41 @@ const AllProjects = ({ projects }: { projects: Project[] }) => {
     });
   }, [projects, searchTerm, selectedTechs, sortBy]);
 
+  const allTechs = useMemo(() => {
+    const freqMap: Record<string, number> = {};
+
+    for (const project of filteredProjects) {
+      for (const tech of project.techStack) {
+        freqMap[tech] = (freqMap[tech] || 0) + 1;
+      }
+    }
+
+    return Object.entries(freqMap)
+      .sort((a, b) => b[1] - a[1])
+      .map(([tech, count]) => ({ tech, count }));
+  }, [filteredProjects]);
+
+  const [showAllTechs, setShowAllTechs] = useState(false);
+
+  const frequentTechs = allTechs.filter(({ count }) => count >= 2);
+  const infrequentTechs = allTechs.filter(({ count }) => count < 2);
+  const visibleTechs =
+    selectedTechs.length > 0 || showAllTechs
+      ? [...frequentTechs, ...infrequentTechs]
+      : frequentTechs;
+
   const toggleTechFilter = (tech: string | null) => {
-    startTransition(() => {
-      setSelectedTechs((prev) =>
-        prev!.includes(tech) ? prev.filter((t) => t !== tech) : [...prev, tech],
-      );
-    });
+    if (tech === null) {
+      setSelectedTechs([]);
+    } else {
+      startTransition(() => {
+        setSelectedTechs((prev) =>
+          prev!.includes(tech)
+            ? prev.filter((t) => t !== tech)
+            : [...prev, tech],
+        );
+      });
+    }
   };
 
   return (
@@ -374,26 +398,59 @@ const AllProjects = ({ projects }: { projects: Project[] }) => {
                 className="overflow-hidden"
               >
                 <div className="p-4 bg-steel/40 border border-light/10 rounded-lg mt-2">
-                  <div className="flex flex-wrap gap-2">
-                    {allTechs.map((tech) => (
+                  <div className="flex flex-wrap gap-2 items-center content-center">
+                    {visibleTechs.map(({ tech, count }) => (
                       <button
                         key={tech}
                         onClick={() => toggleTechFilter(tech)}
-                        className={`px-3 py-1.5 rounded-full text-sm font-medium flex items-center gap-2 transition-all duration-200 transform hover:scale-105 ${selectedTechs.includes(tech) ? "bg-accent text-light shadow-lg shadow-accent/30" : "bg-dark/70 text-text/80 hover:bg-steel"}`}
+                        className={`px-3 py-1.5 rounded-full text-sm font-medium flex items-center gap-2 transition-all duration-200 transform hover:scale-105 ${
+                          selectedTechs.includes(tech)
+                            ? "bg-accent text-light shadow-lg shadow-accent/30"
+                            : "bg-dark/70 text-text/80 hover:bg-steel"
+                        }`}
                       >
                         {getTechIcon(tech)} {tech}
+                        <span className="text-xs text-light/60">({count})</span>
                       </button>
                     ))}
+
+                    {!showAllTechs &&
+                      selectedTechs.length === 0 &&
+                      infrequentTechs.length > 0 && (
+                        <button
+                          onClick={() => setShowAllTechs(true)}
+                          className="text-sm font-semibold text-accent/80 hover:text-accent transition-colors"
+                        >
+                          Show {infrequentTechs.length} more
+                        </button>
+                      )}
+
+                    {showAllTechs &&
+                      selectedTechs.length === 0 &&
+                      infrequentTechs.length > 0 && (
+                        <button
+                          onClick={() => setShowAllTechs(false)}
+                          className="text-sm font-semibold text-accent/80 hover:text-accent transition-colors"
+                        >
+                          Show less
+                        </button>
+                      )}
                   </div>
-                  {selectedTechs.length > 0 && (
-                    <button
-                      onClick={() => toggleTechFilter(null)}
-                      className="mt-4 text-sm font-semibold text-accent/80 hover:text-accent transition-colors"
-                    >
-                      {" "}
-                      Clear all filters{" "}
-                    </button>
-                  )}
+
+                  <div className="flex justify-between">
+                    {selectedTechs.length > 0 && (
+                      <button
+                        onClick={() => {
+                          toggleTechFilter(null);
+                          setShowAllTechs(false);
+                        }}
+                        className="mt-4 text-sm font-semibold text-accent/80 hover:text-accent transition-colors"
+                      >
+                        {" "}
+                        Clear all filters{" "}
+                      </button>
+                    )}
+                  </div>
                 </div>
               </motion.div>
             )}

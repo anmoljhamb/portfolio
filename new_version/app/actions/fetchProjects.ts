@@ -96,7 +96,7 @@ export async function fetchProjectFromGitHub(
       projectReadme: lines.join("\n"),
       sourceCodeLink: repoData.html_url,
       demoLink: repoData.homepage || null,
-      techStack: (topicsData.names || []).map(formatTechName),
+      techStack: topicsData.names || [],
       dateMade: repoData.created_at,
       stars: repoData.stargazers_count,
       watchers: repoData.subscribers_count,

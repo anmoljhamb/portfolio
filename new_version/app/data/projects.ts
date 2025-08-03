@@ -4,8 +4,6 @@ export const githubProjects = [
   "https://github.com/anmoljhamb/CSS2JS",
   "https://github.com/anmoljhamb/inventory-management-system",
   "https://github.com/anmoljhamb/TheAsteroids",
-  "https://github.com/anmoljhamb/nvim-config",
-  "https://github.com/anmoljhamb/dotfiles",
   "https://github.com/anmoljhamb/electronic-shelf-labels",
   "https://github.com/anmoljhamb/smart-parking-system",
   "https://github.com/anmoljhamb/dutify",

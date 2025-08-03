@@ -6,8 +6,6 @@ const Page = async () => {
     (project) => project !== null,
   );
 
-  console.log(projects);
-
   return (
     <div className="h-full w-full overflow-y-auto scroll-smooth">
       <section className="h-screen w-full">
