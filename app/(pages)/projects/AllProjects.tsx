@@ -334,10 +334,11 @@ const AllProjects = ({ projects }: { projects: Project[] }) => {
           className="text-center mb-6"
         >
           <h1 className="text-3xl md:text-5xl font-bold text-light mb-3">
-            My Digital Creations
+            My Projects
           </h1>
           <p className="text-lg text-text/80 max-w-2xl mx-auto">
-            A curated collection of my work. Filter, sort, and explore.
+            Here is a selection of my recent work. Feel free to search by name,
+            technology, or date.
           </p>
         </motion.div>
 

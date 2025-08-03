@@ -1,7 +1,7 @@
 import { LINKEDIN_URL } from "./data/socials";
 
 export const APP_LOADING_TIMER = 1000;
-export const PAGE_LOADING_TIMER = 750;
+export const PAGE_LOADING_TIMER = 300;
 
 export const NAV_LINKS: {
   title: string;
