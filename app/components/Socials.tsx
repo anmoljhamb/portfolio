@@ -35,7 +35,7 @@ const socials: Social[] = [
 
 const Socials = () => {
   return (
-    <div className="absolute top-1/2 -translate-y-1/2 z-10">
+    <div className="absolute top-1/2 -translate-y-1/2 z-10 hidden md:block">
       {socials.map((social) => {
         return (
           <a

@@ -26,7 +26,7 @@ export default function Arrow({
       initial="initial"
       whileHover="hover"
       whileTap={{ scale: 0.9, transition: { type: "spring", stiffness: 400 } }}
-      className={`group absolute top-1/2 -translate-y-1/2 w-16 h-32 cursor-pointer ${
+      className={`hidden md:block group absolute top-1/2 -translate-y-1/2 w-16 h-32 cursor-pointer ${
         reverse ? "left-4" : "right-4"
       }`}
       style={{ scaleX: reverse ? -1 : 1 }}

@@ -35,7 +35,7 @@ export default function RootLayout({
         )}
       >
         <Navigation />
-        <div id="root" className="w-full h-full mx-24 overflow-hidden">
+        <div id="root" className="w-full h-full mx-2 md:mx-24 overflow-hidden">
           {children}
         </div>
         <Arrows />
