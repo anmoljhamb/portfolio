@@ -86,8 +86,6 @@ export async function fetchProjectFromGitHub(
 
     const images = extractImageUrls(readmeContent, owner, repo);
 
-    console.log(images);
-
     const project: Project = {
       id: repoData.id,
       name,

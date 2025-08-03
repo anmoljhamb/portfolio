@@ -59,7 +59,7 @@ const ProjectCard = ({
       animate="inView"
       exit="exit"
       viewport={{ once: true, amount: 0.1 }}
-      className="flex flex-col h-full bg-steel/60 backdrop-blur-sm border border-light/10 rounded-xl overflow-hidden shadow-lg hover:shadow-accent/30 transition-all duration-300 hover:scale-[1.03] cursor-pointer group will-change-transform"
+      className="flex flex-col h-full bg-steel/20 backdrop-blur-sm border border-light/10 rounded-xl overflow-hidden shadow-lg hover:shadow-accent/30 transition-all duration-300 hover:scale-[1.03] cursor-pointer group will-change-transform"
       onClick={onClick}
     >
       <div className="h-48 bg-dark flex items-center justify-center overflow-hidden">
@@ -158,7 +158,7 @@ const ProjectDetailModal = ({
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.9, opacity: 0 }}
-        className="bg-steel/80 backdrop-blur-lg border border-light/10 rounded-xl max-w-4xl w-full h-[90vh] flex flex-col"
+        className="bg-steel/50 backdrop-blur-lg border border-light/10 rounded-xl max-w-4xl w-full h-[90vh] flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between p-5 border-b border-light/10 flex-shrink-0">
@@ -358,7 +358,7 @@ const AllProjects = ({ projects }: { projects: Project[] }) => {
                 placeholder="Search by name or summary..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 bg-steel/60 backdrop-blur-sm text-light placeholder:text-text/50 border border-light/10 rounded-lg transition-all duration-300 focus:border-accent focus:ring-2 focus:ring-accent/30 focus:outline-none"
+                className="w-full pl-12 pr-4 py-3 bg-steel/50 backdrop-blur-sm text-light placeholder:text-text/50 border border-light/10 rounded-lg transition-all duration-300 focus:border-accent focus:ring-2 focus:ring-accent/30 focus:outline-none"
               />
             </div>
             <div className="flex gap-4">
@@ -366,7 +366,7 @@ const AllProjects = ({ projects }: { projects: Project[] }) => {
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
-                  className="w-full px-4 py-3 bg-steel/60 backdrop-blur-sm text-light border border-light/10 rounded-lg appearance-none transition-all duration-300 focus:border-accent focus:ring-2 focus:ring-accent/30 focus:outline-none"
+                  className="w-full px-4 py-3 bg-steel/50 backdrop-blur-sm text-light border border-light/10 rounded-lg appearance-none transition-all duration-300 focus:border-accent focus:ring-2 focus:ring-accent/30 focus:outline-none"
                 >
                   <option value="date-desc">Newest First</option>
                   <option value="date-asc">Oldest First</option>
@@ -380,11 +380,13 @@ const AllProjects = ({ projects }: { projects: Project[] }) => {
               </div>
               <button
                 onClick={() => setShowFilters(!showFilters)}
-                className="w-full md:w-auto px-4 py-3 bg-steel/60 backdrop-blur-sm border border-light/10 rounded-lg flex items-center justify-center gap-2 hover:bg-accent hover:border-accent transition-colors duration-300"
+                className="w-full md:w-auto px-4 py-3 bg-steel/50 backdrop-blur-sm border border-light/10 rounded-lg flex items-center justify-center gap-2 hover:bg-accent hover:border-accent transition-colors duration-300"
               >
                 <Filter size={16} /> Filters
                 <ChevronDown
-                  className={`h-4 w-4 transition-transform duration-300 ${showFilters ? "rotate-180" : ""}`}
+                  className={`h-4 w-4 transition-transform duration-300 ${
+                    showFilters ? "rotate-180" : ""
+                  }`}
                 />
               </button>
             </div>
@@ -397,7 +399,7 @@ const AllProjects = ({ projects }: { projects: Project[] }) => {
                 exit={{ opacity: 0, height: 0 }}
                 className="overflow-hidden"
               >
-                <div className="p-4 bg-steel/40 border border-light/10 rounded-lg mt-2">
+                <div className="p-4 bg-steel/10 border border-light/10 rounded-lg mt-2">
                   <div className="flex flex-wrap gap-2 items-center content-center">
                     {visibleTechs.map(({ tech, count }) => (
                       <button
@@ -406,7 +408,7 @@ const AllProjects = ({ projects }: { projects: Project[] }) => {
                         className={`px-3 py-1.5 rounded-full text-sm font-medium flex items-center gap-2 transition-all duration-200 transform hover:scale-105 ${
                           selectedTechs.includes(tech)
                             ? "bg-accent text-light shadow-lg shadow-accent/30"
-                            : "bg-dark/70 text-text/80 hover:bg-steel"
+                            : "bg-dark/70 text-text/80 hover:bg-steel/30"
                         }`}
                       >
                         {getTechIcon(tech)} {tech}
@@ -458,9 +460,10 @@ const AllProjects = ({ projects }: { projects: Project[] }) => {
         </motion.div>
       </div>
 
-      {/* 3. Use `isPending` to provide visual feedback on the grid */}
       <div
-        className={`flex-1 overflow-y-auto px-6 pb-6 transition-opacity duration-300 ${isPending ? "opacity-60" : "opacity-100"}`}
+        className={`flex-1 overflow-y-auto px-6 pb-6 transition-opacity duration-300 ${
+          isPending ? "opacity-60" : "opacity-100"
+        }`}
       >
         <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto">
           <AnimatePresence>
