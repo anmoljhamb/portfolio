@@ -11,4 +11,5 @@ export const githubProjects = [
   "https://github.com/anmoljhamb/sassTemplateGenerator",
   "https://github.com/anmoljhamb/MailClient",
   "https://github.com/anmoljhamb/realtime-data-collection",
+  "https://github.com/anmoljhamb/neatify",
 ];
