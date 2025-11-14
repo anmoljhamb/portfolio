@@ -12,10 +12,10 @@ const Page = async () => {
       <section className="h-screen w-full snap-start">
         <AboutHeader />
       </section>
-      <section className="h-screen w-full snap-start">
+      <section id="journey" className="h-screen w-full snap-start">
         <JourneyTimeline />
       </section>
-      <section className="h-screen w-full snap-start">
+      <section id="tech-section" className="h-screen w-full snap-start">
         <WhyICodeTechSection />
       </section>
     </div>

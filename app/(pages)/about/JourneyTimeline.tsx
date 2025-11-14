@@ -12,16 +12,28 @@ import { ChevronDown } from "lucide-react";
 import React, { useRef, useState } from "react";
 import { PhotoModal } from "./PhotoModal";
 
-const ScrollIndicator = () => (
-  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 pointer-events-none">
-    <motion.div
-      animate={{ y: [0, 8, 0] }}
-      transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-    >
-      <ChevronDown className="w-8 h-8 text-text/30" />
-    </motion.div>
-  </div>
-);
+const ScrollIndicator = () => {
+  const handleScroll = () => {
+    const nextSection = document.getElementById("tech-section");
+    if (nextSection) {
+      nextSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  return (
+    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20">
+      <motion.button
+        onClick={handleScroll}
+        animate={{ y: [0, 8, 0] }}
+        transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+        className="cursor-pointer hover:opacity-70 transition-opacity"
+        aria-label="Scroll to next section"
+      >
+        <ChevronDown className="w-8 h-8 text-text/30 hover:text-accent transition-colors" />
+      </motion.button>
+    </div>
+  );
+};
 
 interface TimelineCardProps {
   item: TimelineItem;

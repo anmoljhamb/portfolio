@@ -4,6 +4,7 @@ import ScrollIndicator from "@/app/components/ScrollIndicator";
 import * as aboutData from "@/app/data/about";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function HomePage() {
   return (
@@ -32,7 +33,6 @@ export default function HomePage() {
                 }}
               />
             </div>
-
             <motion.div
               className="w-48 h-48 md:w-60 md:h-60 relative rounded-full overflow-hidden shadow-2xl border-4 border-accent/80"
               initial={{ scale: 0.8, opacity: 0 }}
@@ -48,7 +48,6 @@ export default function HomePage() {
                 unoptimized={true}
               />
             </motion.div>
-
             <motion.div
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -63,6 +62,22 @@ export default function HomePage() {
               <p className="mt-6 text-md md:text-lg text-text leading-relaxed max-w-2xl mx-auto">
                 {aboutData.SHORT_SUMMARY}
               </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" }}
+            >
+              <Link href="/projects">
+                <motion.button
+                  className="px-8 py-3 bg-accent text-dark font-semibold rounded-lg shadow-lg border-2 border-accent hover:bg-transparent hover:text-accent transition-all duration-300 hover:cursor-pointer"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  View My Projects
+                </motion.button>
+              </Link>
             </motion.div>
           </div>
         </motion.div>
