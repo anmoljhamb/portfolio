@@ -13,6 +13,7 @@ export type Project = {
   projectSummary: string;
   projectReadme: string;
   sourceCodeLink: string;
+  isPrivate?: boolean;
   demoLink: string | null;
   techStack: string[];
   dateMade: string;

@@ -122,16 +122,18 @@ const ProjectCard = ({
                 <ExternalLink size={18} />
               </a>
             )}
-            <a
-              href={project.sourceCodeLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(e) => e.stopPropagation()}
-              className="text-accent hover:text-light transition-colors"
-              aria-label="Source Code"
-            >
-              <Github size={18} />
-            </a>
+            {!project.isPrivate && (
+              <a
+                href={project.sourceCodeLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="text-accent hover:text-light transition-colors"
+                aria-label="Source Code"
+              >
+                <Github size={18} />
+              </a>
+            )}
           </div>
         </div>
       </div>
@@ -180,7 +182,7 @@ const ProjectDetailModal = ({
                 className="w-full h-auto max-h-80 object-cover"
                 width={500}
                 height={500}
-                // fill
+              // fill
               />
             </div>
           )}
@@ -214,14 +216,16 @@ const ProjectDetailModal = ({
                   })}
                 </span>
               </div>
-              <a
-                href={project.sourceCodeLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-accent hover:text-light transition-colors"
-              >
-                <Github size={16} /> View Source
-              </a>
+              {!project.isPrivate && (
+                <a
+                  href={project.sourceCodeLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-accent hover:text-light transition-colors"
+                >
+                  <Github size={16} /> View Source
+                </a>
+              )}
               {project.demoLink && (
                 <a
                   href={project.demoLink}
@@ -385,9 +389,8 @@ const AllProjects = ({ projects }: { projects: Project[] }) => {
               >
                 <Filter size={16} /> Filters
                 <ChevronDown
-                  className={`h-4 w-4 transition-transform duration-300 ${
-                    showFilters ? "rotate-180" : ""
-                  }`}
+                  className={`h-4 w-4 transition-transform duration-300 ${showFilters ? "rotate-180" : ""
+                    }`}
                 />
               </button>
             </div>
@@ -406,11 +409,10 @@ const AllProjects = ({ projects }: { projects: Project[] }) => {
                       <button
                         key={tech}
                         onClick={() => toggleTechFilter(tech)}
-                        className={`px-3 py-1.5 rounded-full text-sm font-medium flex items-center gap-2 transition-all duration-200 transform hover:scale-105 ${
-                          selectedTechs.includes(tech)
+                        className={`px-3 py-1.5 rounded-full text-sm font-medium flex items-center gap-2 transition-all duration-200 transform hover:scale-105 ${selectedTechs.includes(tech)
                             ? "bg-accent text-light shadow-lg shadow-accent/30"
                             : "bg-dark/70 text-text/80 hover:bg-steel/30"
-                        }`}
+                          }`}
                       >
                         {getTechIcon(tech)} {tech}
                         <span className="text-xs text-light/60">({count})</span>
@@ -462,9 +464,8 @@ const AllProjects = ({ projects }: { projects: Project[] }) => {
       </div>
 
       <div
-        className={`flex-1 overflow-y-auto px-6 pb-6 transition-opacity duration-300 ${
-          isPending ? "opacity-60" : "opacity-100"
-        } colored-scroll-bar`}
+        className={`flex-1 overflow-y-auto px-6 pb-6 transition-opacity duration-300 ${isPending ? "opacity-60" : "opacity-100"
+          } colored-scroll-bar`}
       >
         <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto colored-scroll-bar">
           <AnimatePresence>

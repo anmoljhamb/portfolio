@@ -9,6 +9,7 @@ function extractImageUrls(
   readme: string,
   owner: string,
   repo: string,
+  isPrivate: boolean,
 ): string[] {
   const urls = new Set<string>();
 
@@ -28,8 +29,16 @@ function extractImageUrls(
   // Normalize relative URLs
   const baseUrl = `https://raw.githubusercontent.com/${owner}/${repo}/HEAD/`;
   return Array.from(urls).map((url) => {
-    if (url.startsWith("http")) return url;
-    return baseUrl + url.replace(/^\.?\//, ""); // remove './' or '/' prefix
+    let finalUrl = url;
+    if (!url.startsWith("http")) {
+      finalUrl = baseUrl + url.replace(/^\.?\//, ""); // remove './' or '/' prefix
+    }
+
+    // If it's a private repo and is a raw githubusercontent URL, route it through proxy
+    if (isPrivate && finalUrl.startsWith("https://raw.githubusercontent.com")) {
+      return `/api/github-image?url=${encodeURIComponent(finalUrl)}`;
+    }
+    return finalUrl;
   });
 }
 
@@ -59,8 +68,14 @@ export async function fetchProjectFromGitHub(
       }),
     ]);
 
-    if (!repoRes.ok || !readmeRes.ok)
-      throw new Error("GitHub API request failed");
+    if (!repoRes.ok || !readmeRes.ok) {
+      console.error(`GitHub API request failed for ${repoUrl}`);
+      console.error(`Repo Status: ${repoRes.status} ${repoRes.statusText}`);
+      console.error(`Readme Status: ${readmeRes.status} ${readmeRes.statusText}`);
+      if (!repoRes.ok) console.error("Repo Error Details:", await repoRes.text());
+      if (!readmeRes.ok) console.error("Readme Error Details:", await readmeRes.text());
+      throw new Error(`GitHub API request failed for ${repoUrl}`);
+    }
 
     const repoData = await repoRes.json();
     const readmeData = await readmeRes.json();
@@ -77,7 +92,8 @@ export async function fetchProjectFromGitHub(
     const firstLine = lines[0];
     const name = firstLine.replace(/^#\s*/, "").trim() || repoData.name;
 
-    const images = extractImageUrls(readmeContent, owner, repo);
+    const isPrivate = repoData.private;
+    const images = extractImageUrls(readmeContent, owner, repo, isPrivate);
 
     const project: Project = {
       id: repoData.id,
@@ -86,6 +102,7 @@ export async function fetchProjectFromGitHub(
       projectSummary: repoData.description || "No description provided.",
       projectReadme: lines.join("\n"),
       sourceCodeLink: repoData.html_url,
+      isPrivate: repoData.private,
       demoLink: repoData.homepage || null,
       techStack: topicsData.names || [],
       dateMade: repoData.created_at,

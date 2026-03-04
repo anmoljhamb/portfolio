@@ -25,7 +25,9 @@ const Page = async () => {
           <article key={index}>
             <h2>{project.name}</h2>
             <p>{project.projectSummary}</p>
-            <a href={project.sourceCodeLink}>View Project</a>
+            {!project.isPrivate && (
+              <a href={project.sourceCodeLink}>View Project</a>
+            )}
             {project.demoLink && (
               <a href={project.demoLink}>View Project Demo</a>
             )}
